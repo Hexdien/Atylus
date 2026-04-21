@@ -46,32 +46,6 @@ Para o frontend chamar a API local, adicione ao vite.config.js:
 
 ---
 
-## Estrutura do projeto
-
-  landing/
-  ├── src/
-  │   ├── components/
-  │   │   ├── Navbar.jsx
-  │   │   ├── Hero.jsx
-  │   │   ├── Services.jsx
-  │   │   ├── Process.jsx
-  │   │   ├── Portfolio.jsx
-  │   │   ├── Testimonials.jsx
-  │   │   ├── Contact.jsx
-  │   │   └── Footer.jsx
-  │   ├── App.jsx
-  │   ├── main.jsx
-  │   └── index.css
-  ├── backend/
-  │   ├── server.js         API Express
-  │   ├── .env.example
-  │   └── Dockerfile
-  ├── Dockerfile            Multi-stage: build + nginx
-  ├── nginx.conf            SPA + proxy /api → backend
-  ├── docker-compose.yml
-  └── vite.config.js
-
----
 
 ## Personalizações rápidas
 
