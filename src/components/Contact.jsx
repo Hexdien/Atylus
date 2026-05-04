@@ -7,6 +7,7 @@ export default function Contact() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [form, setForm] = useState({ nome: '', negocio: '', whatsapp: '', interesse: '', mensagem: '' })
+  const contactPhone = '5521999999999'
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -24,16 +25,20 @@ export default function Contact() {
     setLoading(true)
     setError('')
     try {
-      const res = await fetch('/api/lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Erro ao enviar.')
+      const lines = [
+        'Olá! Vim pela landing page e gostaria de saber mais.',
+        `Nome: ${form.nome}`,
+        form.negocio ? `Negócio: ${form.negocio}` : null,
+        `WhatsApp: ${form.whatsapp}`,
+        form.interesse ? `Interesse: ${form.interesse}` : null,
+        form.mensagem ? `Mensagem: ${form.mensagem}` : null,
+      ].filter(Boolean)
+
+      const message = encodeURIComponent(lines.join('\n'))
+      window.open(`https://wa.me/${contactPhone}?text=${message}`, '_blank', 'noopener,noreferrer')
       setSent(true)
     } catch (err) {
-      setError(err.message)
+      setError(err.message || 'Não foi possível abrir o WhatsApp.')
     } finally {
       setLoading(false)
     }
@@ -51,12 +56,12 @@ export default function Contact() {
             <em style={{ color: 'var(--color-accent)', fontStyle: 'italic' }}>crescer?</em>
           </h2>
           <p style={{ fontFamily: 'var(--font-body)', fontSize: '1rem', fontWeight: 300, color: 'var(--color-muted)', lineHeight: 1.8, marginBottom: '48px' }}>
-            Preencha o formulário e entraremos em contato em até 24 horas úteis para uma conversa sem compromisso.
+            Preencha o formulário e abriremos o WhatsApp com a sua mensagem pronta para envio.
           </p>
 
           {[
-            { label: 'WhatsApp', value: '(xx) 9xxxx-xxxx' },
-            { label: 'Email', value: 'contato@noxdigital.com.br' },
+            { label: 'WhatsApp', value: '(21) 99999-9999' },
+            { label: 'Email', value: 'contato@atylus.com.br' },
             { label: 'Atendimento', value: 'Seg–Sex, 9h às 18h' },
           ].map(item => (
             <div key={item.label} style={{ marginBottom: '20px', paddingBottom: '20px', borderBottom: '1px solid rgba(15,14,13,0.08)' }}>
@@ -79,7 +84,7 @@ export default function Contact() {
                 Mensagem enviada!
               </h3>
               <p style={{ fontFamily: 'var(--font-body)', color: 'var(--color-muted)', lineHeight: 1.8 }}>
-                Em breve entraremos em contato. Obrigado pelo interesse!
+                Sua mensagem foi preparada. Conclua o envio na janela do WhatsApp.
               </p>
             </div>
           ) : (
