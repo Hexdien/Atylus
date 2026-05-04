@@ -8,7 +8,6 @@ const steps = [
 ]
 
 export default function Process() {
-  const sectionRef = useRef(null)
   const itemRefs = useRef([])
 
   useEffect(() => {
