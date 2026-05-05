@@ -70,17 +70,20 @@ export default function Portfolio() {
               style={{
                 background: c.bg,
                 padding: '52px 48px',
-                borderRadius: '50px',
+                borderRadius: '25px',
                 display: 'grid',
                 gridTemplateColumns: '1fr minmax(260px, 340px)',
                 gap: '40px',
                 alignItems: 'start',
+                textAlign: 'center',
                 transitionDelay: `${i * 0.1}s`,
               }}
             >
               <div className="portfolio-card-content">
                 <span style={{
-                  display: 'inline-block',
+                  display: 'block',
+                  width: '100%',
+                  textAlign: 'left',
                   fontFamily: 'var(--font-body)',
                   fontSize: '0.68rem',
                   letterSpacing: '0.2em',
