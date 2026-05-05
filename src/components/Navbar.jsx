@@ -39,7 +39,7 @@ export default function Navbar() {
       {/* Logo */}
       <a href="#" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
         <img 
-          src="../../public/logo-navbar.png" 
+          src="/logo-navbar.png" 
           alt="Atylus Consultoria & Sistemas" 
           style={{ height: '40px' }}
         />
