@@ -1,9 +1,11 @@
 const testimonials = [
-  { name: 'Carlos M.', role: 'Dono de hamburgueria', text: 'Em 2 meses meu faturamento triplicou. O cardápio novo ficou incrível e as dicas de iFood foram certeiras.' },
-  { name: 'Fernanda R.', role: 'Gestora de clínica', text: 'O site que criaram pra mim trouxe mais leads em um mês do que em 1 ano de indicação.' },
-  { name: 'Paulo S.', role: 'Empreendedor digital', text: 'O sistema que desenvolveram eliminou 3 horas de trabalho manual por dia. Valeu cada centavo.' },
+  { name: 'Carlos M.', role: 'Original Burguer', text: 'Nunca gostei de trabalhar com delivery, mas a solução que me trouxeram ficou excelente e sem dor de cabeça.' },
+  { name: 'Isabel C.', role: 'Lanches da Bel', text: 'Eu já estava desanimada com plataformas de delivery, mas o cardápio novo ficou incrível e as dicas sobre iFood e 99 foram certeiras.' },
+  { name: 'Fernanda R.', role: 'Gestora de clínica', text: 'Meu site ficou maravilhoso! Adorei o resultado e as explicações da equipe. Sucesso total!' },
+  { name: 'Paulo S.', role: 'Empreendedor digital', text: 'O sistema que desenvolveram resolveu perfeitamente a minha necessidade de centralizar informações e acessá-las de qualquer lugar. Valeu cada centavo.' },
   { name: 'Isabela T.', role: 'Restaurante delivery', text: 'Profissionalismo total. Eles entendem o que o cliente precisa antes mesmo de você saber o que pedir.' },
 ]
+
 
 const marqueeItems = [...testimonials, ...testimonials]
 
