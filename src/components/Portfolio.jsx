@@ -66,7 +66,7 @@ export default function Portfolio() {
             <div
               key={c.title}
               ref={el => refs.current[i] = el}
-              className="reveal service-card"
+              className="reveal service-card portfolio-card"
               style={{
                 background: c.bg,
                 padding: '52px 48px',
@@ -78,7 +78,7 @@ export default function Portfolio() {
                 transitionDelay: `${i * 0.1}s`,
               }}
             >
-              <div>
+              <div className="portfolio-card-content">
                 <span style={{
                   display: 'inline-block',
                   fontFamily: 'var(--font-body)',
@@ -114,7 +114,7 @@ export default function Portfolio() {
                 </p>
               </div>
 
-              <div style={{ flexShrink: 0 }}>
+              <div className="portfolio-card-media" style={{ flexShrink: 0 }}>
                 <button
                   type="button"
                   onClick={() => setActiveImage(c.image)}
@@ -184,6 +184,61 @@ export default function Portfolio() {
           />
         </button>
       )}
+
+      <style>{`
+        @media (max-width: 900px) {
+          #portfolio {
+            padding: 96px 24px !important;
+          }
+
+          #portfolio .portfolio-card {
+            grid-template-columns: 1fr !important;
+            gap: 28px !important;
+            padding: 32px 24px !important;
+            border-radius: 28px !important;
+          }
+
+          #portfolio .portfolio-card-content h3,
+          #portfolio .portfolio-card-content p {
+            max-width: none !important;
+          }
+
+          #portfolio .portfolio-card-media {
+            width: 100%;
+          }
+
+          #portfolio .portfolio-card-media img {
+            height: auto !important;
+            max-height: 320px;
+          }
+        }
+
+        @media (max-width: 560px) {
+          #portfolio {
+            padding: 80px 16px !important;
+          }
+
+          #portfolio .portfolio-card {
+            padding: 24px 18px !important;
+            gap: 22px !important;
+            border-radius: 22px !important;
+          }
+
+          #portfolio .portfolio-card-content h3 {
+            font-size: clamp(1.5rem, 7vw, 1.9rem) !important;
+          }
+
+          #portfolio .portfolio-card-content p {
+            font-size: 0.92rem !important;
+            line-height: 1.7 !important;
+          }
+
+          #portfolio .portfolio-card-media img {
+            border-radius: 18px !important;
+            max-height: 260px;
+          }
+        }
+      `}</style>
     </section>
   )
 }
