@@ -55,8 +55,8 @@ export default function Portfolio() {
     <section id="portfolio" style={{ padding: '120px 40px', background: 'var(--color-paper)' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
-        <div style={{ marginBottom: '80px' }}>
-          <p className="section-label" style={{ marginBottom: '16px' }}>Resultados reais</p>
+        <div style={{ marginBottom: '40px' }}>
+          <p className="section-label" style={{ marginBottom: '16px', fontSize: '1rem' }}>Resultados reais</p>
           <h2 className="display-title" style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)', color: 'var(--color-ink)' }}>
             Cases que<br />
             <em style={{ color: 'var(--color-accent)', fontStyle: 'italic' }}>provam o método.</em>
