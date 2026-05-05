@@ -14,7 +14,7 @@ const marqueeItems = [...testimonials, ...testimonials]
 export default function Testimonials() {
   const [paused, setPaused] = useState(false);
   return (
-    <section style={{ padding: '100px 0', background: 'var(--color-surface)', overflow: 'hidden' }}>
+    <section style={{ padding: '50px 0', background: 'var(--color-surface)', overflow: 'hidden' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 40px', marginBottom: '56px' }}>
         <p className="section-label" style={{ marginBottom: '16px' }}>Quem já transformou</p>
         <h2 className="display-title" style={{ fontSize: 'clamp(2.2rem, 4vw, 3.5rem)', color: 'var(--color-ink)' }}>
@@ -35,7 +35,7 @@ export default function Testimonials() {
             gap: '24px',
             flexShrink: 0,
             minWidth: 'max-content',
-            animationPlayState: paused ? 'paused' : 'running', // 👈 chave aqui
+            animationPlayState: paused ? 'paused' : 'running', 
           }}
         >
           {/* Duplicar os itens para loop infinito */}
