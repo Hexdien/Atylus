@@ -69,6 +69,7 @@ export default function Services() {
                 className="reveal service-card"
                 style={{
                   background: i === 1 ? 'var(--color-ink-card-service)' : 'var(--color-surface)',
+                  borderRadius: '50px',
                   padding: '44px 40px',
                   transitionDelay: `${i * 0.1}s`,
                   cursor: 'default',
@@ -79,9 +80,10 @@ export default function Services() {
                   <div style={{
                     width: 48, height: 48,
                     background: i === 1 ? 'rgba(200,200,200,0.5)' : 'rgba(15,14,13,0.07)',
+                    borderRadius: '50px',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                   }}>
-                    <Icon size={22} color={i === 1 ? 'var(--color-accent)' : 'var(--color-ink)'} strokeWidth={1.5} />
+                    <Icon size={22} color={i === 1 ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,1)'} strokeWidth={1.5} />
                   </div>
                   <span style={{
                     fontFamily: 'var(--font-body)',
