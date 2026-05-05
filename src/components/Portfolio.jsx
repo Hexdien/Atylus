@@ -1,36 +1,33 @@
-import { useEffect, useRef } from 'react'
-import { ArrowUpRight } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
 
 const cases = [
   {
     tag: 'Delivery · Consultoria',
-    title: 'Hamburgueria aumenta faturamento em 3× em 60 dias',
-    description: 'Reestruturação completa do cardápio digital, otimização de fotos e títulos no iFood, e implementação de promoções estratégicas que triplicaram as vendas.',
-    metric: '+187%',
-    metricLabel: 'em pedidos/mês',
+    title: 'Fevereiro para Março: O Início da Escala',
+    description: 'Em apenas 30 dias de aplicação do método, o faturamento saltou de R$ 1.331,20 para R$ 4.773,46. Um crescimento explosivo de 258% no repasse líquido, provando que o ajuste estratégico inicial é a chave para sair da estagnação.',
     bg: 'var(--color-surface)',
+    image: '/testemunho01.png',
   },
   {
     tag: 'Sistemas · Automação',
     title: 'Sistema de pedidos custom elimina retrabalho diário',
     description: 'Desenvolvimento de plataforma integrada que automatizou o controle de estoque, pedidos e relatórios — economizando 3h por dia da equipe.',
-    metric: '3h/dia',
-    metricLabel: 'economizadas',
     bg: 'var(--color-ink)',
     dark: true,
+    image: '/testemunho01.png',
   },
   {
     tag: 'Digital · Site',
     title: 'Clínica odontológica conquista 40+ leads/mês via site',
     description: 'Criação de site profissional com SEO local, formulário de agendamento integrado e estratégia de Google Meu Negócio.',
-    metric: '40+',
-    metricLabel: 'leads/mês',
     bg: 'var(--color-surface)',
+    image: '/testemunho01.png',
   },
 ]
 
 export default function Portfolio() {
   const refs = useRef([])
+  const [activeImage, setActiveImage] = useState(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -40,6 +37,17 @@ export default function Portfolio() {
     refs.current.forEach(r => r && observer.observe(r))
     return () => observer.disconnect()
   }, [])
+
+  useEffect(() => {
+    if (!activeImage) return undefined
+
+    const onKeyDown = event => {
+      if (event.key === 'Escape') setActiveImage(null)
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [activeImage])
 
   return (
     <section id="portfolio" style={{ padding: '120px 40px', background: 'var(--color-paper)' }}>
@@ -58,18 +66,19 @@ export default function Portfolio() {
             <div
               key={c.title}
               ref={el => refs.current[i] = el}
-              className="reveal service-card"
+              className="reveal service-card portfolio-card"
               style={{
                 background: c.bg,
                 padding: '52px 48px',
+                borderRadius: '50px',
                 display: 'grid',
-                gridTemplateColumns: '1fr auto',
+                gridTemplateColumns: '1fr minmax(260px, 340px)',
                 gap: '40px',
                 alignItems: 'start',
                 transitionDelay: `${i * 0.1}s`,
               }}
             >
-              <div>
+              <div className="portfolio-card-content">
                 <span style={{
                   display: 'inline-block',
                   fontFamily: 'var(--font-body)',
@@ -105,47 +114,131 @@ export default function Portfolio() {
                 </p>
               </div>
 
-              <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                <p style={{
-                  fontFamily: 'var(--font-display)',
-                  fontWeight: 900,
-                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                  color: 'var(--color-accent)',
-                  lineHeight: 1,
-                }}>
-                  {c.metric}
-                </p>
-                <p style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '0.78rem',
-                  color: c.dark ? 'rgba(245,242,238,0.4)' : 'var(--color-muted)',
-                  marginTop: '4px',
-                }}>
-                  {c.metricLabel}
-                </p>
-                <a
-                  href="#contato"
+              <div className="portfolio-card-media" style={{ flexShrink: 0 }}>
+                <button
+                  type="button"
+                  onClick={() => setActiveImage(c.image)}
                   style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    marginTop: '24px',
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '0.78rem',
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                    color: c.dark ? 'var(--color-accent)' : 'var(--color-ink)',
-                    textDecoration: 'none',
-                    opacity: 0.7,
+                    display: 'block',
+                    width: '100%',
+                    padding: 0,
+                    border: 'none',
+                    background: 'transparent',
+                    cursor: 'zoom-in',
                   }}
+                  aria-label={`Ampliar imagem do case ${c.title}`}
                 >
-                  Quero isso <ArrowUpRight size={13} />
-                </a>
+                  <img
+                    src={c.image}
+                    alt={`Imagem do case ${c.title}`}
+                    style={{
+                      width: '100%',
+                      height: '280px',
+                      objectFit: 'cover',
+                      display: 'block',
+                      borderRadius: '24px',
+                      boxShadow: c.dark
+                        ? '0 24px 48px rgba(0,0,0,0.28)'
+                        : '0 24px 48px rgba(15,14,13,0.08)',
+                    }}
+                  />
+                </button>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {activeImage && (
+        <button
+          type="button"
+          onClick={() => setActiveImage(null)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 500,
+            border: 'none',
+            background: 'rgba(15,14,13,0.8)',
+            padding: '32px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'zoom-out',
+          }}
+          aria-label="Fechar visualização da imagem"
+        >
+          <img
+            src={activeImage}
+            alt="Imagem ampliada do case"
+            onClick={event => event.stopPropagation()}
+            style={{
+              maxWidth: 'min(92vw, 960px)',
+              maxHeight: '88vh',
+              width: 'auto',
+              height: 'auto',
+              display: 'block',
+              borderRadius: '24px',
+              boxShadow: '0 28px 80px rgba(0,0,0,0.35)',
+              cursor: 'default',
+            }}
+          />
+        </button>
+      )}
+
+      <style>{`
+        @media (max-width: 900px) {
+          #portfolio {
+            padding: 96px 24px !important;
+          }
+
+          #portfolio .portfolio-card {
+            grid-template-columns: 1fr !important;
+            gap: 28px !important;
+            padding: 32px 24px !important;
+            border-radius: 28px !important;
+          }
+
+          #portfolio .portfolio-card-content h3,
+          #portfolio .portfolio-card-content p {
+            max-width: none !important;
+          }
+
+          #portfolio .portfolio-card-media {
+            width: 100%;
+          }
+
+          #portfolio .portfolio-card-media img {
+            height: auto !important;
+            max-height: 320px;
+          }
+        }
+
+        @media (max-width: 560px) {
+          #portfolio {
+            padding: 80px 16px !important;
+          }
+
+          #portfolio .portfolio-card {
+            padding: 24px 18px !important;
+            gap: 22px !important;
+            border-radius: 22px !important;
+          }
+
+          #portfolio .portfolio-card-content h3 {
+            font-size: clamp(1.5rem, 7vw, 1.9rem) !important;
+          }
+
+          #portfolio .portfolio-card-content p {
+            font-size: 0.92rem !important;
+            line-height: 1.7 !important;
+          }
+
+          #portfolio .portfolio-card-media img {
+            border-radius: 18px !important;
+            max-height: 260px;
+          }
+        }
+      `}</style>
     </section>
   )
 }
