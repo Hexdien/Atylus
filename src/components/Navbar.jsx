@@ -37,13 +37,12 @@ export default function Navbar() {
       }}
     >
       {/* Logo */}
-      <a href="#" style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', gap: '1px' }}>
-        <span style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '1.25rem', color: 'var(--color-ink)', lineHeight: 1 }}>
-        <span style={{ color: 'var(--color-accent)' }}>Atylus</span>
-        </span>
-        <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.58rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--color-muted)' }}>
-          Consultoria & Sistemas
-        </span>
+      <a href="#" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+        <img 
+          src="../../public/logo-navbar.png" 
+          alt="Atylus Consultoria & Sistemas" 
+          style={{ height: '40px' }}
+        />
       </a>
 
       {/* Desktop links */}
@@ -54,7 +53,7 @@ export default function Navbar() {
             href={l.href}
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: '0.82rem',
+              fontSize: '1.125rem',
               fontWeight: 400,
               letterSpacing: '0.08em',
               color: 'var(--color-muted)',
