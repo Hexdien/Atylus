@@ -5,7 +5,7 @@ export default function Footer() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '60px', flexWrap: 'wrap', gap: 32 }}>
           <div>
             <p style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '1.5rem', color: 'var(--color-paper)', marginBottom: '8px' }}>
-              <span style={{ color: 'var(--color-accent)' }}>Atylus</span>
+             <span style={{ color: 'var(--color-accent)' }}>Atylus</span>
             </p>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.85rem', fontWeight: 300, color: 'rgba(245,242,238,0.4)', maxWidth: '280px', lineHeight: 1.8 }}>
               Consultoria, sistemas e soluções digitais para negócios que querem crescer de verdade.

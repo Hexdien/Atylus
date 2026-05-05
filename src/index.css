@@ -6,10 +6,11 @@
   --font-body: 'DM Sans', sans-serif;
   --color-ink: #0f0e0d;
   --color-paper: #f5f2ee;
-  --color-accent: #c8a96e;
-  --color-accent-dark: #8b6914;
+  --color-accent: #0299e6;
+  --color-accent-dark: #0158ad;
   --color-muted: #7a7068;
   --color-surface: #edeae4;
+  --color-ink-card-service: #00265a;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }

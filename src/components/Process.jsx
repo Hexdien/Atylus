@@ -8,7 +8,6 @@ const steps = [
 ]
 
 export default function Process() {
-  const sectionRef = useRef(null)
   const itemRefs = useRef([])
 
   useEffect(() => {
@@ -53,7 +52,7 @@ export default function Process() {
                 transitionDelay: `${i * 0.12}s`,
               }}
             >
-              <p style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '3.5rem', color: 'rgba(200,169,110,0.15)', lineHeight: 1, marginBottom: '24px' }}>
+              <p style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '3.5rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1, marginBottom: '24px' }}>
                 {step.num}
               </p>
               <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '1.4rem', color: 'var(--color-paper)', marginBottom: '14px' }}>
