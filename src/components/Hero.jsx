@@ -68,12 +68,11 @@ export default function Hero() {
 
       <div style={{ maxWidth: '900px' }}>
         {/* Label */}
-        <p className="section-label animate-fade-up" style={{ marginBottom: '28px' }}>
-          Transformando negócios digitais
+        <p className="section-label animate-fade-up" style={{  }}>
         </p>
 
         {/* Headline */}
-        <h1 className="display-title animate-fade-up delay-100" style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', color: 'var(--color-ink)', marginBottom: '12px' }}>
+        <h1 className="display-title animate-fade-up delay-100" style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', color: 'var(--color-ink)', marginBottom: '12px', marginTop: '50px' }}>
           Seu negócio
         </h1>
         <h1 className="display-title animate-fade-up delay-200" style={{ fontSize: 'clamp(3rem, 7vw, 6rem)', marginBottom: '12px' }}>
