@@ -60,7 +60,7 @@ export default function Contact() {
           </p>
 
           {[
-            { label: 'WhatsApp', value: '(21) 99999-9999' },
+            { label: 'WhatsApp', value: '(21) 96469-9116' },
             { label: 'Email', value: 'contato@atylus.com.br' },
             { label: 'Atendimento', value: 'Seg–Sex, 9h às 18h' },
           ].map(item => (
