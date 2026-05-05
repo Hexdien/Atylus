@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const testimonials = [
   { name: 'Carlos M.', role: 'Original Burguer', text: 'Nunca gostei de trabalhar com delivery, mas a solução que me trouxeram ficou excelente e sem dor de cabeça.' },
   { name: 'Isabel C.', role: 'Lanches da Bel', text: 'Eu já estava desanimada com plataformas de delivery, mas o cardápio novo ficou incrível e as dicas sobre iFood e 99 foram certeiras.' },
@@ -10,6 +12,7 @@ const testimonials = [
 const marqueeItems = [...testimonials, ...testimonials]
 
 export default function Testimonials() {
+  const [paused, setPaused] = useState(false);
   return (
     <section style={{ padding: '100px 0', background: 'var(--color-surface)', overflow: 'hidden' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 40px', marginBottom: '56px' }}>
@@ -21,12 +24,22 @@ export default function Testimonials() {
       </div>
 
       {/* Marquee */}
-      <div style={{ display: 'flex', gap: '24px', overflow: 'hidden', width: '100%' }}>
+      <div
+        style={{ display: 'flex', gap: '24px', overflow: 'hidden', width: '100%', cursor: 'pointer' }}
+        onClick={() => setPaused(p => !p)}
+      >
         <div
           className="animate-marquee"
-          style={{ display: 'flex', gap: '24px', flexShrink: 0, minWidth: 'max-content' }}
+          style={{
+            display: 'flex',
+            gap: '24px',
+            flexShrink: 0,
+            minWidth: 'max-content',
+            animationPlayState: paused ? 'paused' : 'running', // 👈 chave aqui
+          }}
         >
-          {marqueeItems.map((t, i) => (
+          {/* Duplicar os itens para loop infinito */}
+          {[...marqueeItems, ...marqueeItems].map((t, i) => (
             <div
               key={i}
               style={{
