@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 
+const caseImageUrl = `${import.meta.env.BASE_URL}testemunho01.png`
+
 const cases = [
   {
     tag: 'Delivery · Consultoria',
     title: 'Fevereiro para Março: O Início da Escala',
     description: 'Em apenas 30 dias de aplicação do método, o faturamento saltou de R$ 1.331,20 para R$ 4.773,46. Um crescimento explosivo de 258% no repasse líquido, provando que o ajuste estratégico inicial é a chave para sair da estagnação.',
     bg: 'var(--color-surface)',
-    image: '/testemunho01.png',
+    image: caseImageUrl,
   },
   {
     tag: 'Sistemas · Automação',
@@ -14,14 +16,14 @@ const cases = [
     description: 'Desenvolvimento de plataforma integrada que automatizou o controle de estoque, pedidos e relatórios — economizando 3h por dia da equipe.',
     bg: 'var(--color-ink)',
     dark: true,
-    image: '/testemunho01.png',
+    image: caseImageUrl,
   },
   {
     tag: 'Digital · Site',
     title: 'Clínica odontológica conquista 40+ leads/mês via site',
     description: 'Criação de site profissional com SEO local, formulário de agendamento integrado e estratégia de Google Meu Negócio.',
     bg: 'var(--color-surface)',
-    image: '/testemunho01.png',
+    image: caseImageUrl,
   },
 ]
 
