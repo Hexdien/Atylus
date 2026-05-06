@@ -1,5 +1,5 @@
 export default function WhatsAppButton() {
-  const phone = '5521999999999' // troque pelo número com DDI + DDD
+  const phone = '5521964699116' // troque pelo número com DDI + DDD
   const message = encodeURIComponent('Olá! Vim pelo site e gostaria de saber mais.')
 
   return (
