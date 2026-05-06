@@ -124,6 +124,7 @@ export default function Hero() {
             { num: '+50', label: 'negócios atendidos' },
             { num: '3×', label: 'crescimento médio' },
             { num: '100%', label: 'personalizado' },
+            { num: '200%', label: 'placeholder' },
           ].map(s => (
             <div key={s.label}>
               <p style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '2.2rem', color: 'var(--color-ink)', lineHeight: 1 }}>
@@ -137,26 +138,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll cue */}
-      <a
-        href="#servicos"
-        style={{
-          position: 'absolute',
-          bottom: '36px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '6px',
-          color: 'var(--color-muted)',
-          textDecoration: 'none',
-          opacity: 0.6,
-        }}
-      >
-        <span style={{ fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', fontFamily: 'var(--font-body)' }}>scroll</span>
-        <ChevronDown size={16} strokeWidth={1.5} style={{ animation: 'float 2s ease-in-out infinite' }} />
-      </a>
+      
     </section>
   )
 }

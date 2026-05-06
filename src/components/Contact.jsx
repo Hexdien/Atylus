@@ -45,7 +45,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contato" style={{ padding: '120px 40px', background: 'var(--color-paper)' }}>
+    <section id="contato" style={{ padding: '80px 40px', background: 'var(--color-paper)' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
 
         {/* Left info */}
@@ -55,9 +55,6 @@ export default function Contact() {
             Pronto para<br />
             <em style={{ color: 'var(--color-accent)', fontStyle: 'italic' }}>crescer?</em>
           </h2>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: '1rem', fontWeight: 300, color: 'var(--color-muted)', lineHeight: 1.8, marginBottom: '48px' }}>
-            Preencha o formulário e abriremos o WhatsApp com a sua mensagem pronta para envio.
-          </p>
 
           {[
             { label: 'WhatsApp', value: '(21) 96469-9116' },
@@ -65,7 +62,7 @@ export default function Contact() {
             { label: 'Atendimento', value: 'Seg–Sex, 9h às 18h' },
           ].map(item => (
             <div key={item.label} style={{ marginBottom: '20px', paddingBottom: '20px', borderBottom: '1px solid rgba(15,14,13,0.08)' }}>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-muted)', marginBottom: '4px' }}>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: '1rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-muted)', marginBottom: '4px' }}>
                 {item.label}
               </p>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: '1rem', color: 'var(--color-ink)' }}>

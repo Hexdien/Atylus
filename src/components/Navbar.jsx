@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const logoUrl = `${import.meta.env.BASE_URL}logo-navbar.png`
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40)
@@ -39,7 +40,7 @@ export default function Navbar() {
       {/* Logo */}
       <a href="#" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
         <img 
-          src="../../public/logo-navbar.png" 
+          src={logoUrl}
           alt="Atylus Consultoria & Sistemas" 
           style={{ height: '40px' }}
         />

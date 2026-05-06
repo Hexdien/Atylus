@@ -20,7 +20,7 @@ export default function Process() {
   }, [])
 
   return (
-    <section id="processo" style={{ padding: '120px 40px', background: 'var(--color-ink)' }}>
+    <section id="processo" style={{ padding: '80px 40px', background: 'var(--color-ink)', borderRadius: '20px' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '80px', flexWrap: 'wrap', gap: 24 }}>

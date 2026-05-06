@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 
+const caseImageUrl = `${import.meta.env.BASE_URL}testemunho01.png`
+
 const cases = [
   {
     tag: 'Delivery · Consultoria',
     title: 'Fevereiro para Março: O Início da Escala',
     description: 'Em apenas 30 dias de aplicação do método, o faturamento saltou de R$ 1.331,20 para R$ 4.773,46. Um crescimento explosivo de 258% no repasse líquido, provando que o ajuste estratégico inicial é a chave para sair da estagnação.',
     bg: 'var(--color-surface)',
-    image: '/testemunho01.png',
+    image: caseImageUrl,
   },
   {
     tag: 'Sistemas · Automação',
@@ -14,14 +16,14 @@ const cases = [
     description: 'Desenvolvimento de plataforma integrada que automatizou o controle de estoque, pedidos e relatórios — economizando 3h por dia da equipe.',
     bg: 'var(--color-ink)',
     dark: true,
-    image: '/testemunho01.png',
+    image: caseImageUrl,
   },
   {
     tag: 'Digital · Site',
     title: 'Clínica odontológica conquista 40+ leads/mês via site',
     description: 'Criação de site profissional com SEO local, formulário de agendamento integrado e estratégia de Google Meu Negócio.',
     bg: 'var(--color-surface)',
-    image: '/testemunho01.png',
+    image: caseImageUrl,
   },
 ]
 
@@ -53,8 +55,8 @@ export default function Portfolio() {
     <section id="portfolio" style={{ padding: '120px 40px', background: 'var(--color-paper)' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
-        <div style={{ marginBottom: '80px' }}>
-          <p className="section-label" style={{ marginBottom: '16px' }}>Resultados reais</p>
+        <div style={{ marginBottom: '40px' }}>
+          <p className="section-label" style={{ marginBottom: '16px', fontSize: '1rem' }}>Resultados reais</p>
           <h2 className="display-title" style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)', color: 'var(--color-ink)' }}>
             Cases que<br />
             <em style={{ color: 'var(--color-accent)', fontStyle: 'italic' }}>provam o método.</em>
@@ -70,17 +72,20 @@ export default function Portfolio() {
               style={{
                 background: c.bg,
                 padding: '52px 48px',
-                borderRadius: '50px',
+                borderRadius: '25px',
                 display: 'grid',
                 gridTemplateColumns: '1fr minmax(260px, 340px)',
                 gap: '40px',
                 alignItems: 'start',
+                textAlign: 'center',
                 transitionDelay: `${i * 0.1}s`,
               }}
             >
               <div className="portfolio-card-content">
                 <span style={{
-                  display: 'inline-block',
+                  display: 'block',
+                  width: '100%',
+                  textAlign: 'left',
                   fontFamily: 'var(--font-body)',
                   fontSize: '0.68rem',
                   letterSpacing: '0.2em',
