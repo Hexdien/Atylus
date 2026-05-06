@@ -7,7 +7,7 @@ export default function Contact() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [form, setForm] = useState({ nome: '', negocio: '', whatsapp: '', interesse: '', mensagem: '' })
-  const contactPhone = '5521999999999'
+  const contactPhone = '5521964699116'
 
   useEffect(() => {
     const observer = new IntersectionObserver(
