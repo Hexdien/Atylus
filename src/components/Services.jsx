@@ -41,11 +41,11 @@ export default function Services() {
   }, [])
 
   return (
-    <section id="servicos" style={{ padding: '120px 40px', background: 'var(--color-paper)' }}>
+    <section id="servicos" style={{ padding: '80px 40px', background: 'var(--color-paper)' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
         {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '80px', flexWrap: 'wrap', gap: 24 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '40px', flexWrap: 'wrap', gap: 24 }}>
           <div>
             <p className="section-label" style={{ marginBottom: '16px' }}>O que fazemos</p>
             <h2 className="display-title" style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)', color: 'var(--color-ink)' }}>
@@ -83,7 +83,12 @@ export default function Services() {
                     borderRadius: '50px',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                   }}>
-                    <Icon size={22} color={i === 1 ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,1)'} strokeWidth={1.5} />
+                    <Icon size={22} 
+                    color={
+                      i === 0 ? '#F4A261'      // card 1 — laranja
+                      : i === 1 ? '#FFFFFF'    // card 2 — branco
+                      : '#6C63FF'              // card 3 — roxo
+                    }strokeWidth={1.5} />
                   </div>
                   <span style={{
                     fontFamily: 'var(--font-body)',
@@ -110,7 +115,7 @@ export default function Services() {
 
                 <p style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '0.95rem',
+                  fontSize: '1rem',
                   fontWeight: 300,
                   color: i === 1 ? 'rgba(245,242,238,0.6)' : 'var(--color-muted)',
                   lineHeight: 1.8,
