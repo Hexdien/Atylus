@@ -19,6 +19,7 @@ const portfolios = [
     title: 'Consultoria para Delivery',
     description: 'Exemplos de frentes estratégicas aplicadas para organizar operação, melhorar margem e acelerar crescimento no delivery.',
     bg: 'var(--color-surface)',
+    image: portfolioFotos[2],
     items: [
       {
         title: 'Fevereiro para Março: O Início da Escala',
@@ -43,6 +44,7 @@ const portfolios = [
     description: 'Sistemas escaláveis, arquitetura limpa, compacto, personalizado. Tudo que você precisa para seu fluxo de trabalho.',
     bg: 'var(--color-ink)',
     dark: true,
+    image: portfolioFotos[6],
     items: [
       {
         title: 'Erros manuais',
@@ -194,6 +196,39 @@ export default function Portfolio() {
                   }}>
                     {c.description}
                   </p>
+
+                  {c.image && (
+                    <button
+                      type="button"
+                      onClick={() => setActiveImage(c.image)}
+                      style={{
+                        display: 'block',
+                        width: '100%',
+                        maxWidth: '560px',
+                        padding: 0,
+                        border: 'none',
+                        background: 'transparent',
+                        cursor: 'zoom-in',
+                        marginBottom: '22px',
+                      }}
+                      aria-label={`Ampliar imagem de ${c.title}`}
+                    >
+                      <img
+                        src={c.image}
+                        alt={`Exemplo de ${c.title}`}
+                        style={{
+                          width: '100%',
+                          height: '220px',
+                          objectFit: 'cover',
+                          display: 'block',
+                          borderRadius: '18px',
+                          boxShadow: c.dark
+                            ? '0 18px 36px rgba(0,0,0,0.24)'
+                            : '0 18px 36px rgba(15,14,13,0.08)',
+                        }}
+                      />
+                    </button>
+                  )}
 
                   <button
                     type="button"
