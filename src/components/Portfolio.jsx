@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 const portfolioFotos = [
   `${import.meta.env.BASE_URL}fevereiro-marco.png`,
-  `${import.meta.env.BASE_URL}marco.png`,
+  `${import.meta.env.BASE_URL}marco-abril.png`,
   `${import.meta.env.BASE_URL}fevereiro.png`,
-  `${import.meta.env.BASE_URL}testemunho01.png`,
+  `${import.meta.env.BASE_URL}resultadoFinal.png`,
 ]
 
 
@@ -94,6 +94,7 @@ export default function Portfolio() {
   const [openIndex, setOpenIndex] = useState(null)
   const refs = useRef([])
   const [activeImage, setActiveImage] = useState(null)
+  const [zoomed, setZoomed] = useState(false)
 
   const toggle = index => {
     setOpenIndex(prev => (prev === index ? null : index))
@@ -109,6 +110,7 @@ export default function Portfolio() {
   }, [])
 
   useEffect(() => {
+    setZoomed(false)
     if (!activeImage) return undefined
 
     const onKeyDown = event => {
@@ -323,7 +325,7 @@ export default function Portfolio() {
       {activeImage && (
         <button
           type="button"
-          onClick={() => setActiveImage(null)}
+          onClick={() => { setActiveImage(null); setZoomed(false) }}
           style={{
             position: 'fixed',
             inset: 0,
@@ -332,25 +334,39 @@ export default function Portfolio() {
             background: 'rgba(15,14,13,0.8)',
             padding: '32px',
             display: 'flex',
-            alignItems: 'center',
+            alignItems: zoomed ? 'flex-start' : 'center',
             justifyContent: 'center',
-            cursor: 'zoom-out',
+            cursor: zoomed ? 'default' : 'zoom-out',
+            overflow: zoomed ? 'auto' : 'hidden',
           }}
           aria-label="Fechar visualização da imagem"
         >
           <img
             src={activeImage}
             alt="Imagem ampliada do case"
-            onClick={event => event.stopPropagation()}
+            onClick={event => { event.stopPropagation(); setZoomed(z => !z) }}
             style={{
-              maxWidth: 'min(92vw, 960px)',
-              maxHeight: '88vh',
-              width: 'auto',
-              height: 'auto',
               display: 'block',
-              borderRadius: '24px',
               boxShadow: '0 28px 80px rgba(0,0,0,0.35)',
-              cursor: 'default',
+              transition: 'width 0.3s ease, border-radius 0.2s ease',
+              ...(zoomed
+                ? {
+                    width: 'clamp(600px, 160vw, 2400px)',
+                    maxWidth: 'none',
+                    maxHeight: 'none',
+                    height: 'auto',
+                    borderRadius: '12px',
+                    cursor: 'zoom-out',
+                  }
+                : {
+                    maxWidth: 'min(92vw, 960px)',
+                    maxHeight: '88vh',
+                    width: 'auto',
+                    height: 'auto',
+                    borderRadius: '24px',
+                    cursor: 'zoom-in',
+                  }
+              ),
             }}
           />
         </button>
