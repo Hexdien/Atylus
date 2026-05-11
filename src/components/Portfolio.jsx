@@ -45,22 +45,22 @@ const portfolios = [
       {
         title: 'Erros manuais',
         description: 'A empresa possuía um sistema manual de preenchimento de dados para cada nota, isso acarretava em uma probabilidade maior de falhas humanas acontecerem e criar inconsistências no sistema.',
-        image: portfolioFotos[2],
+        image: portfolioFotos[3],
       },
       {
         title: 'Problema de inconsistências',
         description: 'Devido a fragilidade entre setores, a operação muitas vezes gerava atraso que iria comprometer tempo dos funcinários para correção de problemas que poderiam ser evitados com um sistema automatizado.',
-        image: portfolioFotos[3],
+        image: portfolioFotos[4],
       },
       {
         title: 'Menos falhas operacionais',
         description: 'Processos mais claros para a equipe reduziram erros e deram mais consistência à rotina.',
-        image: portfolioFotos[2],
+        image: portfolioFotos[5],
       },
       {
         title: 'Previsibilidade com métricas',
         description: 'Plano de ação com acompanhamento de indicadores para orientar decisões com mais segurança.',
-        image: portfolioFotos[3],
+        image: portfolioFotos[6],
       },
     ],
   },
@@ -73,22 +73,22 @@ const portfolios = [
       {
         title: 'Landing pages para captação',
         description: 'Páginas focadas em conversão para apresentar oferta e transformar visita em lead.',
-        image: portfolioFotos[0],
+        image: portfolioFotos[7],
       },
       {
         title: 'Sites institucionais com foco comercial',
         description: 'Estrutura profissional para fortalecer marca, autoridade e apresentação de serviços.',
-        image: portfolioFotos[1],
+        image: portfolioFotos[8],
       },
       {
         title: 'Contato simplificado com integrações',
         description: 'Formulário, WhatsApp e fluxos de contato pensados para reduzir atrito no atendimento.',
-        image: portfolioFotos[2],
+        image: portfolioFotos[9],
       },
       {
         title: 'Base de SEO local',
         description: 'Otimização de conteúdo e estrutura para ampliar visibilidade nas buscas da região.',
-        image: portfolioFotos[3],
+        image: portfolioFotos[10],
       },
     ],
   },
