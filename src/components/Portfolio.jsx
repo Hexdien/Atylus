@@ -156,62 +156,111 @@ export default function Portfolio() {
                   background: c.bg,
                   padding: '52px 48px',
                   borderRadius: '25px',
-                  display: 'block',
-                  textAlign: 'center',
+                  display: 'flex',
+                  flexDirection: 'column',
                   transitionDelay: `${i * 0.1}s`,
                 }}
               >
-                <div className="portfolio-card-content">
-                  <span style={{
-                    display: 'block',
-                    width: '100%',
-                    textAlign: 'left',
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '0.68rem',
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    color: c.dark ? 'var(--color-accent)' : 'var(--color-muted)',
-                    marginBottom: '20px',
-                    fontWeight: 500,
-                  }}>
-                    {c.tag}
-                  </span>
-                  <h3 style={{
-                    fontFamily: 'var(--font-display)',
-                    fontWeight: 700,
-                    fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)',
-                    color: c.dark ? 'var(--color-paper)' : 'var(--color-ink)',
-                    marginBottom: '16px',
-                    lineHeight: 1.25,
-                    maxWidth: '560px',
-                  }}>
-                    {c.title}
-                  </h3>
-                  <p style={{
-                    fontFamily: 'var(--font-body)',
-                    fontSize: '0.95rem',
-                    fontWeight: 300,
-                    color: c.dark ? 'rgba(245,242,238,0.55)' : 'var(--color-muted)',
-                    lineHeight: 1.8,
-                    maxWidth: '500px',
-                    marginBottom: '22px',
-                  }}>
-                    {c.description}
-                  </p>
+                {/* TOPO */}
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    gap: '40px',
+                  }}
+                >
+                  {/* ESQUERDA */}
+                  <div className="portfolio-card-content">
+                    <span style={{
+                      display: 'block',
+                      width: '100%',
+                      textAlign: 'left',
+                      fontFamily: 'var(--font-body)',
+                      fontSize: '0.68rem',
+                      letterSpacing: '0.2em',
+                      textTransform: 'uppercase',
+                      color: c.dark ? 'var(--color-accent)' : 'var(--color-muted)',
+                      marginBottom: '20px',
+                      fontWeight: 500,
+                    }}>
+                      {c.tag}
+                    </span>
+                    <h3 style={{
+                      fontFamily: 'var(--font-display)',
+                      fontWeight: 700,
+                      fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)',
+                      color: c.dark ? 'var(--color-paper)' : 'var(--color-ink)',
+                      marginBottom: '16px',
+                      lineHeight: 1.25,
+                    }}>
+                      {c.title}
+                    </h3>
+                    <p style={{
+                      fontFamily: 'var(--font-body)',
+                      fontSize: '0.95rem',
+                      fontWeight: 300,
+                      color: c.dark ? 'rgba(245,242,238,0.55)' : 'var(--color-muted)',
+                      lineHeight: 1.8,
+                      marginBottom: '22px',
+                    }}>
+                      {c.description}
+                    </p>
 
+                    <button
+                      type="button"
+                      onClick={() => toggle(i)}
+                      aria-expanded={isOpen}
+                      aria-controls={`portfolio-dropdown-${i}`}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        gap: '16px',
+                        width: '100%',
+                        padding: '16px 18px',
+                        borderRadius: '18px',
+                        border: c.dark ? '1px solid rgba(245,242,238,0.14)' : '1px solid rgba(15,14,13,0.08)',
+                        background: c.dark ? 'rgba(245,242,238,0.06)' : 'rgba(255,255,255,0.72)',
+                        color: c.dark ? 'var(--color-paper)' : 'var(--color-ink)',
+                        cursor: 'pointer',
+                        textAlign: 'left',
+                      }}
+                    >
+                      <span style={{
+                        fontFamily: 'var(--font-body)',
+                        fontSize: '0.92rem',
+                        fontWeight: 500,
+                      }}>
+                        {isOpen ? 'Ocultar exemplos' : 'Ver exemplos'}
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        style={{
+                          fontSize: '1.2rem',
+                          lineHeight: 1,
+                          transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
+                          transition: 'transform 0.2s ease',
+                        }}
+                      >
+                        +
+                      </span>
+                    </button>
+                  </div>
+
+                  {/* DIREITA */}
                   {c.image && (
                     <button
                       type="button"
                       onClick={() => setActiveImage(c.image)}
                       style={{
                         display: 'block',
-                        width: '100%',
-                        maxWidth: '560px',
+                        width: '420px',
+                        flexShrink: 0,
                         padding: 0,
                         border: 'none',
                         background: 'transparent',
                         cursor: 'zoom-in',
-                        marginBottom: '22px',
                       }}
                       aria-label={`Ampliar imagem de ${c.title}`}
                     >
@@ -221,6 +270,7 @@ export default function Portfolio() {
                         style={{
                           width: '100%',
                           height: '220px',
+                          minHeight: '220px',
                           objectFit: 'cover',
                           display: 'block',
                           borderRadius: '18px',
@@ -231,139 +281,99 @@ export default function Portfolio() {
                       />
                     </button>
                   )}
+                </div>
 
-                  <button
-                    type="button"
-                    onClick={() => toggle(i)}
-                    aria-expanded={isOpen}
-                    aria-controls={`portfolio-dropdown-${i}`}
+                {/* DROPDOWN — largura total do card */}
+                {isOpen && (
+                  <div
+                    id={`portfolio-dropdown-${i}`}
                     style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      gap: '16px',
                       width: '100%',
-                      maxWidth: '560px',
-                      padding: '16px 18px',
-                      borderRadius: '18px',
-                      border: c.dark ? '1px solid rgba(245,242,238,0.14)' : '1px solid rgba(15,14,13,0.08)',
-                      background: c.dark ? 'rgba(245,242,238,0.06)' : 'rgba(255,255,255,0.72)',
-                      color: c.dark ? 'var(--color-paper)' : 'var(--color-ink)',
-                      cursor: 'pointer',
-                      textAlign: 'left',
+                      marginTop: '14px',
+                      padding: '18px 0 0',
+                      display: 'grid',
+                      gap: '16px',
                     }}
                   >
-                    <span style={{
-                      fontFamily: 'var(--font-body)',
-                      fontSize: '0.92rem',
-                      fontWeight: 500,
-                    }}>
-                      {isOpen ? 'Ocultar exemplos' : 'Ver exemplos'}
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      style={{
-                        fontSize: '1.2rem',
-                        lineHeight: 1,
-                        transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
-                        transition: 'transform 0.2s ease',
-                      }}
-                    >
-                      +
-                    </span>
-                  </button>
-
-                  {isOpen && (
-                    <div
-                      id={`portfolio-dropdown-${i}`}
-                      style={{
-                        width: '100%',
-                        marginTop: '14px',
-                        padding: '18px 0 0',
-                        borderRadius: '18px',
-                        display: 'grid',
-                        gap: '16px',
-                      }}
-                    >
-                      {c.items.map(item => (
-                        <div
-                          key={item.title}
-                          className="portfolio-item-card"
-                          style={{
-                            display: 'grid',
-                            gridTemplateColumns: 'minmax(0, 1fr) minmax(220px, 300px)',
-                            gap: '20px',
-                            alignItems: 'center',
-                            padding: '18px',
-                            borderRadius: '20px',
-                            background: c.dark ? 'rgba(245,242,238,0.04)' : 'rgba(255,255,255,0.92)',
-                            border: c.dark ? '1px solid rgba(245,242,238,0.08)' : '1px solid rgba(15,14,13,0.06)',
-                          }}
-                        >
-                          <div style={{ textAlign: 'left' }}>
-                            <h4
-                              style={{
-                                margin: '0 0 10px',
-                                fontFamily: 'var(--font-display)',
-                                fontSize: '1.05rem',
-                                lineHeight: 1.35,
-                                color: c.dark ? 'var(--color-paper)' : 'var(--color-ink)',
-                              }}
-                            >
-                              {item.title}
-                            </h4>
-                            <p
-                              style={{
-                                margin: 0,
-                                fontFamily: 'var(--font-body)',
-                                fontSize: '0.92rem',
-                                lineHeight: 1.7,
-                                color: c.dark ? 'rgba(245,242,238,0.82)' : 'var(--color-muted)',
-                              }}
-                            >
-                              {item.description}
-                            </p>
-                          </div>
-
-                          <button
-                            type="button"
-                            onClick={() => setActiveImage(item.image)}
+                    {c.items.map(item => (
+                      <div
+                        key={item.title}
+                        className="portfolio-item-card"
+                        style={{
+                          display: 'grid',
+                          gridTemplateColumns: 'minmax(0, 1fr) minmax(220px, 300px)',
+                          gap: '20px',
+                          alignItems: 'center',
+                          padding: '18px',
+                          borderRadius: '20px',
+                          background: c.dark ? 'rgba(245,242,238,0.04)' : 'rgba(255,255,255,0.92)',
+                          border: c.dark ? '1px solid rgba(245,242,238,0.08)' : '1px solid rgba(15,14,13,0.06)',
+                        }}
+                      >
+                        <div style={{ textAlign: 'left' }}>
+                          <h4
                             style={{
-                              display: 'block',
-                              width: '100%',
-                              padding: 0,
-                              border: 'none',
-                              background: 'transparent',
-                              cursor: 'zoom-in',
+                              margin: '0 0 10px',
+                              fontFamily: 'var(--font-display)',
+                              fontSize: '1.05rem',
+                              lineHeight: 1.35,
+                              color: c.dark ? 'var(--color-paper)' : 'var(--color-ink)',
                             }}
-                            aria-label={`Ampliar imagem do item ${item.title}`}
                           >
-                            <img
-                              src={item.image}
-                              alt={`Imagem do item ${item.title}`}
-                              className="portfolio-item-image"
-                              style={{
-                                width: '100%',
-                                height: '180px',
-                                objectFit: 'cover',
-                                display: 'block',
-                                borderRadius: '18px',
-                                boxShadow: c.dark
-                                  ? '0 18px 36px rgba(0,0,0,0.24)'
-                                  : '0 18px 36px rgba(15,14,13,0.08)',
-                              }}
-                            />
-                          </button>
+                            {item.title}
+                          </h4>
+                          <p
+                            style={{
+                              margin: 0,
+                              fontFamily: 'var(--font-body)',
+                              fontSize: '0.92rem',
+                              lineHeight: 1.7,
+                              color: c.dark ? 'rgba(245,242,238,0.82)' : 'var(--color-muted)',
+                            }}
+                          >
+                            {item.description}
+                          </p>
                         </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
+
+                        <button
+                          type="button"
+                          onClick={() => setActiveImage(item.image)}
+                          style={{
+                            display: 'block',
+                            width: '100%',
+                            padding: 0,
+                            border: 'none',
+                            background: 'transparent',
+                            cursor: 'zoom-in',
+                          }}
+                          aria-label={`Ampliar imagem do item ${item.title}`}
+                        >
+                          <img
+                            src={item.image}
+                            alt={`Imagem do item ${item.title}`}
+                            className="portfolio-item-image"
+                            style={{
+                              width: '100%',
+                              height: '180px',
+                              objectFit: 'cover',
+                              display: 'block',
+                              borderRadius: '18px',
+                              boxShadow: c.dark
+                                ? '0 18px 36px rgba(0,0,0,0.24)'
+                                : '0 18px 36px rgba(15,14,13,0.08)',
+                            }}
+                          />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             )
           })}
         </div>
       </div>
+
 
       {activeImage && (
         <button
