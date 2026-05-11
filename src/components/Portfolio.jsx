@@ -51,7 +51,7 @@ const portfolios = [
       },
       {
         title: 'Problema de inconsistências',
-        description: 'Devido a fragilidade entre setores, a operação muitas vezes gerava atraso que iria comprometer tempo dos funcinários para correção de problemas que poderiam ser evitados com um sistema automatizado.',
+        description: 'Devido a fragilidade entre setores, a operação muitas vezes gerava atraso que iria comprometer tempo dos funcionários para correção de problemas que poderiam ser evitados com um sistema automatizado.',
         image: portfolioFotos[4],
       },
       {
