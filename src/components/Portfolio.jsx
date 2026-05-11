@@ -3,7 +3,8 @@ const portfolioFotos = [
   `${import.meta.env.BASE_URL}fevereiro-marco.png`,
   `${import.meta.env.BASE_URL}marco-abril.png`,
   `${import.meta.env.BASE_URL}fevereiro.png`,
-  `${import.meta.env.BASE_URL}resultadoFinal.png`,
+  `${import.meta.env.BASE_URL}resultado.png`,
+  
 ]
 
 
@@ -27,7 +28,7 @@ const portfolios = [
       {
         title: 'O Resultado Final (Comparativo Geral)',
         description: 'Fevereiro vs. Abril: A Transformação Completa \n Destaque: "De R$ 1,3 mil para quase R$ 9 mil em apenas 60 dias. \n O comparativo entre o primeiro e o terceiro mês revela o verdadeiro poder da metodologia: um salto de 573% no faturamento. Saímos de um resultado tímido em fevereiro para um negócio de alta performance em abril, com um aumento real de R$ 7.638,55 no bolso do cliente.',
-        image: portfolioFotos[1],
+        image: portfolioFotos[3],
       },
     ],
   },
