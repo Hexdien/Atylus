@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
+const portfolioFotos = [
+  `${import.meta.env.BASE_URL}fevereiro-marco.png`,
+  `${import.meta.env.BASE_URL}marco.png`,
+  `${import.meta.env.BASE_URL}fevereiro.png`,
+  `${import.meta.env.BASE_URL}testemunho01.png`,
+]
 
-const caseImageUrl = `${import.meta.env.BASE_URL}testemunho01.png`
 
 const portfolios = [
   {
@@ -12,46 +17,46 @@ const portfolios = [
       {
         title: 'Fevereiro para Março: O Início da Escala',
         description: 'Em apenas 30 dias de aplicação do método, o faturamento saltou de R$ 1.331,20 para R$ 4.773,46. Um crescimento de 258% no repasse líquido, mostrando o impacto do ajuste estratégico inicial.',
-        image: caseImageUrl,
+        image: portfolioFotos[0],
       },
       {
         title: 'Março para Abril: Consolidando o Sucesso',
         description: 'A escalada não parou. No segundo mês, quase dobramos o resultado anterior, atingindo R$ 8.969,75. Um aumento de R$ 4.196,29 (+87%) em relação ao mês de março, mostrando que o método é sustentável e escalável.',
-        image: caseImageUrl,
+        image: portfolioFotos[1],
       },
       {
         title: 'O Resultado Final (Comparativo Geral)',
         description: 'Fevereiro vs. Abril: A Transformação Completa \n Destaque: "De R$ 1,3 mil para quase R$ 9 mil em apenas 60 dias. \n O comparativo entre o primeiro e o terceiro mês revela o verdadeiro poder da metodologia: um salto de 573% no faturamento. Saímos de um resultado tímido em fevereiro para um negócio de alta performance em abril, com um aumento real de R$ 7.638,55 no bolso do cliente.',
-        image: caseImageUrl,
+        image: portfolioFotos[1],
       },
     ],
   },
   {
-    tag: 'Resultados · Performance',
-    title: 'Resultados Entregues',
-    description: 'Resultados práticos que mostram a evolução de faturamento, operação e previsibilidade depois da implementação.',
+    tag: 'Sistemas · Automação',
+    title: 'Maior eficiência para seu fluxo',
+    description: 'Sistemas escaláveis, arquitetura limpa, compacto, personalizado. Tudo que você precisa para seu fluxo de trabalho.',
     bg: 'var(--color-ink)',
     dark: true,
     items: [
       {
-        title: 'Crescimento de faturamento em 30 dias',
-        description: 'Reposicionamento estratégico que acelerou o volume de vendas e destravou a operação comercial.',
-        image: caseImageUrl,
+        title: 'Erros manuais',
+        description: 'A emprsa possuía ',
+        image: portfolioFotos[2],
       },
       {
         title: 'Repasse líquido mais saudável',
         description: 'Correção de preço e mix de produtos para melhorar resultado real no caixa.',
-        image: caseImageUrl,
+        image: portfolioFotos[3],
       },
       {
         title: 'Menos falhas operacionais',
         description: 'Processos mais claros para a equipe reduziram erros e deram mais consistência à rotina.',
-        image: caseImageUrl,
+        image: portfolioFotos[2],
       },
       {
         title: 'Previsibilidade com métricas',
         description: 'Plano de ação com acompanhamento de indicadores para orientar decisões com mais segurança.',
-        image: caseImageUrl,
+        image: portfolioFotos[3],
       },
     ],
   },
@@ -64,22 +69,22 @@ const portfolios = [
       {
         title: 'Landing pages para captação',
         description: 'Páginas focadas em conversão para apresentar oferta e transformar visita em lead.',
-        image: caseImageUrl,
+        image: portfolioFotos[0],
       },
       {
         title: 'Sites institucionais com foco comercial',
         description: 'Estrutura profissional para fortalecer marca, autoridade e apresentação de serviços.',
-        image: caseImageUrl,
+        image: portfolioFotos[1],
       },
       {
         title: 'Contato simplificado com integrações',
         description: 'Formulário, WhatsApp e fluxos de contato pensados para reduzir atrito no atendimento.',
-        image: caseImageUrl,
+        image: portfolioFotos[2],
       },
       {
         title: 'Base de SEO local',
         description: 'Otimização de conteúdo e estrutura para ampliar visibilidade nas buscas da região.',
-        image: caseImageUrl,
+        image: portfolioFotos[3],
       },
     ],
   },
