@@ -3,8 +3,10 @@ const portfolioFotos = [
   `${import.meta.env.BASE_URL}fevereiro-marco.png`,
   `${import.meta.env.BASE_URL}marco-abril.png`,
   `${import.meta.env.BASE_URL}resultado.png`,
-  //`${import.meta.env.BASE_URL}.png`,
-  //`${import.meta.env.BASE_URL}.png`,
+  `${import.meta.env.BASE_URL}erro_de_digitação.png`,
+  `${import.meta.env.BASE_URL}procura_de_informações.png`,
+  `${import.meta.env.BASE_URL}produtividade_aumentando.png`,
+  `${import.meta.env.BASE_URL}decisões.png`,
   //`${import.meta.env.BASE_URL}.png`,
   //`${import.meta.env.BASE_URL}.png`,
   
