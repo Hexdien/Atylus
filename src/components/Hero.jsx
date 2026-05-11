@@ -124,7 +124,7 @@ export default function Hero() {
             { num: '+50', label: 'negócios atendidos' },
             { num: '3×', label: 'crescimento médio' },
             { num: '100%', label: 'personalizado' },
-            { num: '200%', label: 'placeholder' },
+            { num: '4,8/5', label: 'Notas em avaliações' },
           ].map(s => (
             <div key={s.label}>
               <p style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '2.2rem', color: 'var(--color-ink)', lineHeight: 1 }}>
