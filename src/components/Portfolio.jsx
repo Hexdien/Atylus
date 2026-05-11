@@ -2,8 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 const portfolioFotos = [
   `${import.meta.env.BASE_URL}fevereiro-marco.png`,
   `${import.meta.env.BASE_URL}marco-abril.png`,
-  `${import.meta.env.BASE_URL}fevereiro.png`,
   `${import.meta.env.BASE_URL}resultado.png`,
+  //`${import.meta.env.BASE_URL}.png`,
+  //`${import.meta.env.BASE_URL}.png`,
+  //`${import.meta.env.BASE_URL}.png`,
+  //`${import.meta.env.BASE_URL}.png`,
   
 ]
 
@@ -28,7 +31,7 @@ const portfolios = [
       {
         title: 'O Resultado Final (Comparativo Geral)',
         description: 'Fevereiro vs. Abril: A Transformação Completa \n Destaque: "De R$ 1,3 mil para quase R$ 9 mil em apenas 60 dias. \n O comparativo entre o primeiro e o terceiro mês revela o verdadeiro poder da metodologia: um salto de 573% no faturamento. Saímos de um resultado tímido em fevereiro para um negócio de alta performance em abril, com um aumento real de R$ 7.638,55 no bolso do cliente.',
-        image: portfolioFotos[3],
+        image: portfolioFotos[2],
       },
     ],
   },
@@ -41,12 +44,12 @@ const portfolios = [
     items: [
       {
         title: 'Erros manuais',
-        description: 'A emprsa possuía ',
+        description: 'A empresa possuía um sistema manual de preenchimento de dados para cada nota, isso acarretava em uma probabilidade maior de falhas humanas acontecerem e criar inconsistências no sistema.',
         image: portfolioFotos[2],
       },
       {
-        title: 'Repasse líquido mais saudável',
-        description: 'Correção de preço e mix de produtos para melhorar resultado real no caixa.',
+        title: 'Problema de inconsistências',
+        description: 'Devido a fragilidade entre setores, a operação muitas vezes gerava atraso que iria comprometer tempo dos funcinários para correção de problemas que poderiam ser evitados com um sistema automatizado.',
         image: portfolioFotos[3],
       },
       {
