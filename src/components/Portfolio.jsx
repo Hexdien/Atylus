@@ -9,6 +9,7 @@ const portfolioFotos = [
   `${import.meta.env.BASE_URL}decisões.png`,
   //`${import.meta.env.BASE_URL}.png`,
   //`${import.meta.env.BASE_URL}.png`,
+  `${import.meta.env.BASE_URL}placeholder.png`,
   
 ]
 
@@ -19,7 +20,7 @@ const portfolios = [
     title: 'Consultoria para Delivery',
     description: 'Exemplos de frentes estratégicas aplicadas para organizar operação, melhorar margem e acelerar crescimento no delivery.',
     bg: 'var(--color-surface)',
-    image: portfolioFotos[2],
+    image: portfolioFotos.at(-1),
     items: [
       {
         title: 'Fevereiro para Março: O Início da Escala',
@@ -44,7 +45,7 @@ const portfolios = [
     description: 'Sistemas escaláveis, arquitetura limpa, compacto, personalizado. Tudo que você precisa para seu fluxo de trabalho.',
     bg: 'var(--color-ink)',
     dark: true,
-    image: portfolioFotos[6],
+    image: portfolioFotos.at(-1),
     items: [
       {
         title: 'Erros manuais',
@@ -73,26 +74,27 @@ const portfolios = [
     title: 'Sites e Presença Digital',
     description: 'Serviços voltados para construir presença digital profissional, capturar leads e converter visitas em contato.',
     bg: 'var(--color-surface)',
+    image: portfolioFotos.at(-1),
     items: [
       {
         title: 'Landing pages para captação',
         description: 'Páginas focadas em conversão para apresentar oferta e transformar visita em lead.',
-        image: portfolioFotos[7],
+        image: portfolioFotos.at(-1),
       },
       {
         title: 'Sites institucionais com foco comercial',
         description: 'Estrutura profissional para fortalecer marca, autoridade e apresentação de serviços.',
-        image: portfolioFotos[8],
+        image: portfolioFotos.at(-1),
       },
       {
         title: 'Contato simplificado com integrações',
         description: 'Formulário, WhatsApp e fluxos de contato pensados para reduzir atrito no atendimento.',
-        image: portfolioFotos[9],
+        image: portfolioFotos.at(-1),
       },
       {
         title: 'Base de SEO local',
         description: 'Otimização de conteúdo e estrutura para ampliar visibilidade nas buscas da região.',
-        image: portfolioFotos[10],
+        image: portfolioFotos.at(-1),
       },
     ],
   },
