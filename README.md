@@ -7,7 +7,7 @@ Stack: React + Vite + Tailwind CSS (frontend)
 Frontend:
   npm install
   
-  npm run dev        # http://localhost:5173
+  npm run dev        
 
 ---
 
@@ -26,5 +26,17 @@ Trocar cores (src/index.css):
 
 Textos, cases e depoimentos:
   Tudo em arrays no topo de cada componente.
+
+# build do projeto
+```bash
+npm run build
+```
+
+# Deploy 
+```bash
+npm run deploy
+```
+
+Isso cria/envia automaticamente a branch gh-pages.
 
 ---
