@@ -177,7 +177,7 @@ export default function Portfolio() {
                       width: '100%',
                       textAlign: 'left',
                       fontFamily: 'var(--font-body)',
-                      fontSize: '0.68rem',
+                      fontSize: '0.90rem',
                       letterSpacing: '0.2em',
                       textTransform: 'uppercase',
                       color: c.dark ? 'var(--color-accent)' : 'var(--color-muted)',
@@ -189,8 +189,8 @@ export default function Portfolio() {
                     <h3 style={{
                       fontFamily: 'var(--font-display)',
                       fontWeight: 700,
-                      fontSize: 'clamp(1.3rem, 2.5vw, 1.8rem)',
-                      color: c.dark ? 'var(--color-paper)' : 'var(--color-ink)',
+                      fontSize: 'clamp(1.50rem, 2.5vw, 1.8rem)',
+                      color: c.dark ? 'var(--color-paper)' : 'var(--color-accent)',
                       marginBottom: '16px',
                       lineHeight: 1.25,
                     }}>
