@@ -5,10 +5,15 @@ const portfolioFotos = [
   `${import.meta.env.BASE_URL}resultado.png`,
   `${import.meta.env.BASE_URL}erro_de_digitação.png`,
   `${import.meta.env.BASE_URL}procura_de_informações.png`,
-  `${import.meta.env.BASE_URL}produtividade_aumentando.png`,
-  `${import.meta.env.BASE_URL}decisões.png`,
-  //`${import.meta.env.BASE_URL}.png`,
-  //`${import.meta.env.BASE_URL}.png`,
+  `${import.meta.env.BASE_URL}menos_falhas.png`,
+  `${import.meta.env.BASE_URL}métricas.png`,
+  `${import.meta.env.BASE_URL}consultoria.png`,
+  `${import.meta.env.BASE_URL}automação.png`,
+  `${import.meta.env.BASE_URL}presença_digital.png`,
+  `${import.meta.env.BASE_URL}captação de leads.png`,
+  `${import.meta.env.BASE_URL}autoridade.png`,
+  `${import.meta.env.BASE_URL}Formulario.png`,
+  `${import.meta.env.BASE_URL}visibilidade.png`,
   `${import.meta.env.BASE_URL}placeholder.png`,
   
 ]
@@ -20,7 +25,7 @@ const portfolios = [
     title: 'Consultoria para Delivery',
     description: 'Exemplos de frentes estratégicas aplicadas para organizar operação, melhorar margem e acelerar crescimento no delivery.',
     bg: 'var(--color-surface)',
-    image: portfolioFotos.at(-1),
+    image: portfolioFotos[7],
     items: [
       {
         title: 'Fevereiro para Março: O Início da Escala',
@@ -45,7 +50,7 @@ const portfolios = [
     description: 'Sistemas escaláveis, arquitetura limpa, compacto, personalizado. Tudo que você precisa para seu fluxo de trabalho.',
     bg: 'var(--color-ink)',
     dark: true,
-    image: portfolioFotos.at(-1),
+    image: portfolioFotos[8],
     items: [
       {
         title: 'Erros manuais',
@@ -74,7 +79,7 @@ const portfolios = [
     title: 'Sites e Presença Digital',
     description: 'Serviços voltados para construir presença digital profissional, capturar leads e converter visitas em contato.',
     bg: 'var(--color-surface)',
-    image: portfolioFotos.at(-1),
+    image: portfolioFotos[9],
     items: [
       {
         title: 'Landing pages para captação',
@@ -125,12 +130,25 @@ export default function Portfolio() {
     setZoomed(false)
     if (!activeImage) return undefined
 
+    window.history.pushState({ portfolioModal: true }, '')
+
     const onKeyDown = event => {
       if (event.key === 'Escape') setActiveImage(null)
     }
 
+    const onPopState = () => {
+      setActiveImage(null)
+    }
+
     window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
+    window.addEventListener('popstate', onPopState)
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('popstate', onPopState)
+      if (window.history.state?.portfolioModal) {
+        window.history.back()
+      }
+    }
   }, [activeImage])
 
   return (
