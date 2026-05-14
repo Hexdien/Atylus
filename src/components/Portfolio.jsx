@@ -128,12 +128,25 @@ export default function Portfolio() {
     setZoomed(false)
     if (!activeImage) return undefined
 
+    window.history.pushState({ portfolioModal: true }, '')
+
     const onKeyDown = event => {
       if (event.key === 'Escape') setActiveImage(null)
     }
 
+    const onPopState = () => {
+      setActiveImage(null)
+    }
+
     window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
+    window.addEventListener('popstate', onPopState)
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('popstate', onPopState)
+      if (window.history.state?.portfolioModal) {
+        window.history.back()
+      }
+    }
   }, [activeImage])
 
   return (

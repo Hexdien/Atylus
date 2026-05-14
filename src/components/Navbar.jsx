@@ -67,7 +67,7 @@ export default function Navbar() {
             {l.label}
           </a>
         ))}
-        <a href="#contato" className="btn-primary" style={{ padding: '10px 24px', fontSize: '0.72rem' }}>
+        <a href="#contato" className="btn-primary" style={{ padding: '10px 24px', fontSize: '0.72rem', borderRadius: '90px 10px 90px 10px' }}>
           Fale conosco
         </a>
       </div>
