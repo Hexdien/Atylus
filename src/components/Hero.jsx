@@ -100,10 +100,10 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className="animate-fade-up delay-500" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-          <a href="#contato" className="btn-primary">
+          <a href="#contato" className="btn-primary" style={{borderRadius: '24px'}}>
             Começar agora <ArrowRight size={16} />
           </a>
-          <a href="#servicos" className="btn-outline">
+          <a href="#servicos" className="btn-outline" style={{borderRadius: '24px'}}>
             Ver serviços
           </a>
         </div>
@@ -121,10 +121,10 @@ export default function Hero() {
           }}
         >
           {[
-            { num: '+50', label: 'negócios atendidos' },
-            { num: '3×', label: 'crescimento médio' },
+            { num: '+53', label: 'negócios atendidos' },
+            { num: '2.2×', label: 'crescimento médio' },
             { num: '100%', label: 'personalizado' },
-            { num: '4.8 / 5', label: 'Notas em avaliações' },
+            { num: '4.9 / 5', label: 'Notas em avaliações' },
           ].map(s => (
             <div key={s.label}>
               <p style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '2.2rem', color: 'var(--color-ink)', lineHeight: 1 }}>

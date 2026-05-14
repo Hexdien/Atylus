@@ -33,7 +33,7 @@ export default function Process() {
               <em style={{ color: 'var(--color-accent)', fontStyle: 'italic' }}>ao resultado.</em>
             </h2>
           </div>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: '1rem', fontWeight: 300, color: 'rgba(245,242,238,0.5)', maxWidth: '320px', lineHeight: 1.8 }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 'larger', fontWeight: 300, color: 'rgba(245,242,238,0.5)', maxWidth: '320px', lineHeight: 1.8 }}>
             Um processo claro e direto. Sem enrolação, sem jargão — só o que importa para o seu negócio crescer.
           </p>
         </div>

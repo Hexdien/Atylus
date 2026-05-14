@@ -53,7 +53,7 @@ export default function Services() {
               <em style={{ color: 'var(--color-accent)', fontStyle: 'italic' }}>uma visão.</em>
             </h2>
           </div>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: '1rem', fontWeight: 300, color: 'var(--color-muted)', maxWidth: '320px', lineHeight: 1.8 }}>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 'x-large', fontWeight: 300, color: 'var(--color-muted)', maxWidth: '320px', lineHeight: 1.8 }}>
             Cada serviço desenhado para atacar um ponto crítico do seu negócio digital.
           </p>
         </div>
