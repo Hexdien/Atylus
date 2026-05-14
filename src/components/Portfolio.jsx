@@ -49,22 +49,22 @@ const portfolios = [
     items: [
       {
         title: 'Erros manuais',
-        description: 'A empresa possuía um sistema manual de preenchimento de dados para cada nota, isso acarretava em uma probabilidade maior de falhas humanas acontecerem e criar inconsistências no sistema.',
+        description: 'Quando o preenchimento de dados depende de processos manuais, pequenos erros de digitação e falhas operacionais podem gerar inconsistências, retrabalho e até perda de informações importantes. Com uma estrutura mais automatizada, você reduz esses riscos e ganha mais segurança, precisão e confiabilidade na operação.',
         image: portfolioFotos[3],
       },
       {
         title: 'Problema de inconsistências',
-        description: 'Devido a fragilidade entre setores, a operação muitas vezes gerava atraso que iria comprometer tempo dos funcionários para correção de problemas que poderiam ser evitados com um sistema automatizado.',
+        description: 'Falhas na comunicação entre setores geravam atrasos e retrabalho na operação. Com processos automatizados, você reduz inconsistências, ganha agilidade e evita correções desnecessárias no dia a dia.',
         image: portfolioFotos[4],
       },
       {
         title: 'Menos falhas operacionais',
-        description: 'Processos mais claros para a equipe reduziram erros e deram mais consistência à rotina.',
+        description: 'Com processos mais claros e bem estruturados, sua equipe ganha mais organização no dia a dia, reduzindo erros operacionais e trazendo mais consistência, controle e eficiência para a rotina da operação.',
         image: portfolioFotos[5],
       },
       {
         title: 'Previsibilidade com métricas',
-        description: 'Plano de ação com acompanhamento de indicadores para orientar decisões com mais segurança.',
+        description: 'Você acompanha indicadores claros e relevantes para entender o que realmente está funcionando no seu negócio, transformando dados em insights estratégicos que trazem mais segurança, previsibilidade e confiança para cada decisão.',
         image: portfolioFotos[6],
       },
     ],
@@ -78,23 +78,25 @@ const portfolios = [
     items: [
       {
         title: 'Landing pages para captação',
-        description: 'Páginas focadas em conversão para apresentar oferta e transformar visita em lead.',
-        image: portfolioFotos.at(-1),
+
+        description: 'Desenvolvimento de páginas estratégicas com foco em conversão, estruturadas para apresentar ofertas de forma clara, fortalecer a percepção de valor da marca e transformar visitantes em oportunidades reais de negócio.',
+        image: portfolioFotos[10],
       },
       {
         title: 'Sites institucionais com foco comercial',
-        description: 'Estrutura profissional para fortalecer marca, autoridade e apresentação de serviços.',
-        image: portfolioFotos.at(-1),
+        description: 'Estruturas digitais desenvolvidas para transmitir credibilidade, fortalecer o posicionamento da marca e apresentar serviços de forma estratégica, alinhando comunicação, autoridade e geração de oportunidades comerciais.',
+        image: portfolioFotos[11],
       },
       {
         title: 'Contato simplificado com integrações',
-        description: 'Formulário, WhatsApp e fluxos de contato pensados para reduzir atrito no atendimento.',
-        image: portfolioFotos.at(-1),
+        description: 'Integração estratégica de formulários, WhatsApp e canais de atendimento para tornar o contato mais ágil, organizado e eficiente, reduzindo barreiras na comunicação e facilitando a conversão de oportunidades em clientes.',
+        image: portfolioFotos[12],
       },
       {
         title: 'Base de SEO local',
-        description: 'Otimização de conteúdo e estrutura para ampliar visibilidade nas buscas da região.',
-        image: portfolioFotos.at(-1),
+        description: 'Estruturação técnica e otimização de conteúdo voltadas para ampliar a presença digital da empresa nas buscas regionais, fortalecendo a visibilidade da marca e aumentando o potencial de geração de oportunidades locais.',
+        image: portfolioFotos[13],
+
       },
     ],
   },
