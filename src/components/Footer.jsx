@@ -2,7 +2,7 @@ export default function Footer() {
 
   const logoUrl = `${import.meta.env.BASE_URL}logo-navbar-negative.png`
   return (
-    <footer style={{ background: 'var(--color-ink)', padding: '60px 40px 40px' }}>
+    <footer style={{ background: '#241510', padding: '60px 40px 40px' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '60px', flexWrap: 'wrap', gap: 32 }}>
           <div>

@@ -19,8 +19,8 @@ export default function Hero() {
         padding: '140px 40px 80px',
         position: 'relative',
         overflow: 'hidden',
-        backgroundColor: 'var(--hero-bg)',
-        backgroundImage: 'radial-gradient(ellipse 1300px 900px at 50% 0%, rgba(47,155,255,0.14), transparent 72%)',
+        backgroundColor: 'var(--hero-bg-top)',
+        backgroundImage: 'radial-gradient(ellipse 1300px 900px at 50% 0%, rgba(1,88,173,0.16), transparent 72%), linear-gradient(180deg, var(--hero-bg-top) 0%, var(--hero-bg-bottom) 100%)',
       }}
     >
       {/* Background aurora blobs */}
@@ -35,7 +35,7 @@ export default function Hero() {
           borderRadius: '50%',
           background: 'radial-gradient(circle, var(--hero-blue) 0%, transparent 70%)',
           filter: 'blur(100px)',
-          opacity: 0.4,
+          opacity: 0.5,
           pointerEvents: 'none',
         }}
       />
@@ -50,7 +50,7 @@ export default function Hero() {
           borderRadius: '50%',
           background: 'radial-gradient(circle, var(--hero-blue) 0%, transparent 70%)',
           filter: 'blur(100px)',
-          opacity: 0.35,
+          opacity: 0.45,
           pointerEvents: 'none',
           animationDelay: '-6.5s',
         }}
@@ -81,7 +81,7 @@ export default function Hero() {
           right: '8%',
           width: '120px',
           height: '120px',
-          opacity: 0.28,
+          opacity: 0.4,
           pointerEvents: 'none',
         }}
       >
@@ -91,7 +91,7 @@ export default function Hero() {
             d="M 60 60 m -50 0 a 50 50 0 1 1 100 0 a 50 50 0 1 1 -100 0"
             fill="none"
           />
-          <text style={{ fontSize: '13px', fill: 'var(--hero-blue)', letterSpacing: '3px', fontFamily: 'var(--font-body)', fontWeight: 500 }}>
+          <text style={{ fontSize: '13px', fill: 'var(--hero-blue-light)', letterSpacing: '3px', fontFamily: 'var(--font-body)', fontWeight: 500 }}>
             <textPath href="#circle">
               DELIVERY · SISTEMAS · DIGITAL · CONSULTORIA ·&nbsp;
             </textPath>
@@ -119,14 +119,14 @@ export default function Hero() {
             alignItems: 'center',
             padding: '8px 18px',
             borderRadius: '999px',
-            border: '1px solid rgba(47,155,255,0.35)',
-            background: 'rgba(47,155,255,0.08)',
+            border: '1px solid rgba(95,168,240,0.5)',
+            background: 'rgba(95,168,240,0.1)',
             fontFamily: 'var(--font-body)',
             fontSize: '0.72rem',
             fontWeight: 500,
             letterSpacing: '0.18em',
             textTransform: 'uppercase',
-            color: 'var(--hero-blue)',
+            color: 'var(--hero-blue-light)',
             marginBottom: '32px',
           }}
         >
@@ -200,7 +200,7 @@ export default function Hero() {
             marginTop: '64px',
             paddingTop: '40px',
             borderTop: '1px solid transparent',
-            borderImage: 'linear-gradient(90deg, transparent, rgba(47,155,255,0.5), rgba(200,155,106,0.45), transparent) 1',
+            borderImage: 'linear-gradient(90deg, transparent, rgba(1,88,173,0.55), rgba(200,155,106,0.45), transparent) 1',
             flexWrap: 'wrap',
             justifyContent: 'center',
           }}
@@ -220,8 +220,10 @@ export default function Hero() {
 
       <style>{`
         #hero {
-          --hero-bg: #4a2f22;
-          --hero-blue: #2F9BFF;
+          --hero-bg-top: #4a2f22;
+          --hero-bg-bottom: #b3855b;
+          --hero-blue: #0158AD;
+          --hero-blue-light: #5fa8f0;
           --hero-gold: #c89b6a;
           --hero-glow: #8a5a3a;
           --hero-text: #faf6f0;
@@ -241,7 +243,7 @@ export default function Hero() {
 
         #hero .hero-btn-primary {
           background: var(--hero-blue);
-          color: var(--hero-bg);
+          color: var(--hero-text);
           padding: 15px 38px;
           border-radius: 999px;
           font-family: var(--font-body);
@@ -260,7 +262,7 @@ export default function Hero() {
         }
         #hero .hero-btn-primary:hover {
           transform: translateY(-1px);
-          box-shadow: 0 10px 30px rgba(47,155,255,0.45);
+          box-shadow: 0 10px 30px rgba(1,88,173,0.55);
         }
 
         #hero .hero-btn-outline {
@@ -283,7 +285,7 @@ export default function Hero() {
         }
         #hero .hero-btn-outline:hover {
           background: var(--hero-text);
-          color: var(--hero-bg);
+          color: var(--hero-bg-top);
           transform: translateY(-1px);
         }
 
