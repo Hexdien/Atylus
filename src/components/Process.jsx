@@ -21,7 +21,7 @@ export default function Process() {
   }, [])
 
   return (
-    <section id="processo" style={{ padding: '80px 40px', background: '#062b5c', borderRadius: '20px', position: 'relative', overflow: 'hidden' }}>
+    <section id="processo" style={{ padding: '80px 40px', background: 'linear-gradient(180deg, #062b5c 0%, #062b5c 78%, #bfe0fb 100%)', borderRadius: '20px', position: 'relative', overflow: 'hidden' }}>
       {/* Ambient blobs */}
       <div
         className="proc-float"

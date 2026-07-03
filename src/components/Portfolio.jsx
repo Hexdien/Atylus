@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react'
 import { ShoppingBag, Code2, Globe, ArrowRight } from 'lucide-react'
 
 const phoneGlobeImg = `${import.meta.env.BASE_URL}visibilidade.png`
-const growthChartImg = `${import.meta.env.BASE_URL}métricas.png`
 
 const cases = [
   {
@@ -11,6 +10,7 @@ const cases = [
     chip: '+573% em 60 dias',
     title: 'Direto Pro Caixa, Sem Depender de Sorte',
     description: 'Ajustamos cardápio, ranqueamento no iFood/99Food e a precificação certa — faturamento saltou de R$ 1,3 mil pra quase R$ 9 mil em dois meses.',
+    stat: { from: 'Fev R$ 1.331', to: 'Abr R$ 8.969' },
     items: ['Mais pedidos sem gastar mais em anúncio', 'Ticket médio maior a cada venda', 'Resultado visível já no 2º mês'],
   },
   {
@@ -46,17 +46,12 @@ export default function Portfolio() {
   return (
     <section id="portfolio" style={{ padding: '140px 40px', background: '#ede1d3', position: 'relative', overflow: 'hidden' }}>
 
-      {/* Corner visual — top-left: phone + spinning globe */}
-      <div className="portfolio-corner portfolio-corner-tl">
+      {/* Side visual — right, beside the Digital case card: phone + spinning globe */}
+      <div className="portfolio-corner portfolio-corner-right">
         <div className="globe-frame">
           <img src={phoneGlobeImg} alt="Conexão global via celular" className="globe-base" />
           <img src={phoneGlobeImg} alt="" aria-hidden="true" className="globe-spin" />
         </div>
-      </div>
-
-      {/* Corner visual — bottom-right: growth chart */}
-      <div className="portfolio-corner portfolio-corner-br">
-        <img src={growthChartImg} alt="Métricas e crescimento real" className="chart-float" />
       </div>
 
       <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
@@ -83,23 +78,8 @@ export default function Portfolio() {
                   borderRadius: '28px',
                   padding: '40px 36px',
                   transitionDelay: `${i * 0.1}s`,
-                  position: 'relative',
                 }}
               >
-                {i === 0 && (
-                  <div className="result-chip-card">
-                    <div className="result-chip-row">
-                      <span className="result-chip-label">Fevereiro</span>
-                      <span className="result-chip-value">R$ 1.331,20</span>
-                    </div>
-                    <div className="result-chip-arrow">↓</div>
-                    <div className="result-chip-row">
-                      <span className="result-chip-label">Abril</span>
-                      <span className="result-chip-value result-chip-value-highlight">R$ 8.969,75</span>
-                    </div>
-                    <p className="result-chip-tag">+573% em 60 dias</p>
-                  </div>
-                )}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
                   <div style={{
                     width: 44, height: 44,
@@ -158,6 +138,26 @@ export default function Portfolio() {
                   {c.description}
                 </p>
 
+                {c.stat && (
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    marginBottom: '24px',
+                    padding: '12px 16px',
+                    borderRadius: '14px',
+                    background: 'rgba(1,88,173,0.06)',
+                  }}>
+                    <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.85rem', color: 'var(--color-muted)' }}>
+                      {c.stat.from}
+                    </span>
+                    <ArrowRight size={13} color="#0158AD" />
+                    <span style={{ fontFamily: 'var(--font-body)', fontSize: '0.85rem', fontWeight: 700, color: '#0158AD' }}>
+                      {c.stat.to}
+                    </span>
+                  </div>
+                )}
+
                 <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '28px' }}>
                   {c.items.map(item => (
                     <li key={item} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -212,15 +212,10 @@ export default function Portfolio() {
           pointer-events: none;
           z-index: 0;
         }
-        .portfolio-corner-tl {
-          top: 6%;
-          left: -3%;
-          width: 260px;
-        }
-        .portfolio-corner-br {
-          bottom: 6%;
-          right: -2%;
-          width: 260px;
+        .portfolio-corner-right {
+          top: 40%;
+          right: 2%;
+          width: 240px;
         }
 
         .globe-frame {
@@ -246,82 +241,8 @@ export default function Portfolio() {
           to   { transform: rotate(360deg); }
         }
 
-        .chart-float {
-          width: 100%;
-          height: auto;
-          display: block;
-          filter: drop-shadow(0 20px 40px rgba(15,14,13,0.14));
-          animation: chartFloat 6s ease-in-out infinite;
-        }
-        @keyframes chartFloat {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-        }
-
-        .result-chip-card {
-          position: absolute;
-          top: -22px;
-          right: -22px;
-          z-index: 2;
-          background: #faf6f0;
-          border: 1px solid rgba(1,88,173,0.15);
-          border-radius: 20px;
-          padding: 18px 20px;
-          width: 200px;
-          box-shadow: 0 20px 40px rgba(15,14,13,0.14);
-          animation: chartFloat 7s ease-in-out infinite;
-          animation-delay: -3s;
-        }
-
-        @media (max-width: 700px) {
-          .result-chip-card {
-            position: static;
-            width: auto;
-            margin-bottom: 20px;
-          }
-        }
-        .result-chip-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: baseline;
-          gap: 12px;
-        }
-        .result-chip-label {
-          font-family: var(--font-body);
-          font-size: 0.72rem;
-          color: var(--color-muted);
-          letter-spacing: 0.04em;
-        }
-        .result-chip-value {
-          font-family: var(--font-display);
-          font-weight: 900;
-          font-size: 1rem;
-          color: #0f0e0d;
-        }
-        .result-chip-value-highlight {
-          color: #0158AD;
-          font-size: 1.15rem;
-        }
-        .result-chip-arrow {
-          text-align: center;
-          color: #0158AD;
-          opacity: 0.5;
-          font-size: 0.9rem;
-          margin: 4px 0;
-        }
-        .result-chip-tag {
-          margin-top: 12px;
-          padding-top: 12px;
-          border-top: 1px solid rgba(1,88,173,0.12);
-          font-family: var(--font-body);
-          font-size: 0.72rem;
-          font-weight: 600;
-          color: #0158AD;
-          text-align: center;
-        }
-
         @media (prefers-reduced-motion: reduce) {
-          .globe-spin, .chart-float, .result-chip-card { animation: none; }
+          .globe-spin { animation: none; }
         }
 
         @media (max-width: 1100px) {

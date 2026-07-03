@@ -65,7 +65,9 @@ export default function Services() {
                 ref={el => refs.current[i] = el}
                 className="reveal svc-card"
                 style={{
-                  background: i === 1 ? '#4a2f22' : '#faf6f0',
+                  background: i === 1
+                    ? 'radial-gradient(ellipse 140% 100% at 50% 0%, rgba(1,88,173,0.16), transparent 72%), linear-gradient(180deg, #4a2f22 0%, #8a6440 100%)'
+                    : '#faf6f0',
                   borderRadius: '50px',
                   padding: '44px 40px',
                   transitionDelay: `${i * 0.1}s`,
