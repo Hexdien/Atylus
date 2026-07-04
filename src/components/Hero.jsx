@@ -8,6 +8,8 @@ export default function Hero() {
     { num: '4.9 / 5', label: 'Notas em avaliações' },
   ]
 
+  const heroBg = `${import.meta.env.BASE_URL}hero-bg.jpg`
+
   return (
     <section
       id="hero"
@@ -15,90 +17,16 @@ export default function Hero() {
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         padding: '140px 40px 80px',
         position: 'relative',
         overflow: 'hidden',
         backgroundColor: 'var(--hero-bg-top)',
-        backgroundImage: 'radial-gradient(ellipse 1300px 900px at 50% 0%, rgba(1,88,173,0.16), transparent 72%), linear-gradient(180deg, var(--hero-bg-top) 0%, var(--hero-bg-bottom) 100%)',
+        backgroundImage: `linear-gradient(180deg, rgba(6,43,92,0.75) 0%, rgba(74,47,34,0.65) 100%), url(${heroBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
     >
-      {/* Background aurora blobs */}
-      <div
-        className="hero-float"
-        style={{
-          position: 'absolute',
-          top: '4%',
-          right: '-14%',
-          width: '760px',
-          height: '760px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, var(--hero-blue) 0%, transparent 70%)',
-          filter: 'blur(100px)',
-          opacity: 0.5,
-          pointerEvents: 'none',
-        }}
-      />
-      <div
-        className="hero-float"
-        style={{
-          position: 'absolute',
-          bottom: '-16%',
-          left: '-12%',
-          width: '640px',
-          height: '640px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, var(--hero-blue) 0%, transparent 70%)',
-          filter: 'blur(100px)',
-          opacity: 0.45,
-          pointerEvents: 'none',
-          animationDelay: '-6.5s',
-        }}
-      />
-
-      {/* Warm glow behind headline */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '18%',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '760px',
-          height: '320px',
-          background: 'radial-gradient(ellipse, var(--hero-glow) 0%, transparent 72%)',
-          filter: 'blur(90px)',
-          opacity: 0.5,
-          pointerEvents: 'none',
-        }}
-      />
-
-      {/* Rotating badge */}
-      <div
-        className="hero-spin"
-        style={{
-          position: 'absolute',
-          top: '10%',
-          right: '8%',
-          width: '120px',
-          height: '120px',
-          opacity: 0.4,
-          pointerEvents: 'none',
-        }}
-      >
-        <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            id="circle"
-            d="M 60 60 m -50 0 a 50 50 0 1 1 100 0 a 50 50 0 1 1 -100 0"
-            fill="none"
-          />
-          <text style={{ fontSize: '13px', fill: 'var(--hero-blue-light)', letterSpacing: '3px', fontFamily: 'var(--font-body)', fontWeight: 500 }}>
-            <textPath href="#circle">
-              DELIVERY · SISTEMAS · DIGITAL · CONSULTORIA ·&nbsp;
-            </textPath>
-          </text>
-        </svg>
-      </div>
-
       <div
         style={{
           maxWidth: '820px',
@@ -134,35 +62,13 @@ export default function Hero() {
         </p>
 
         {/* Headline */}
-        <h1 className="display-title animate-fade-up delay-100" style={{ fontSize: 'clamp(3.4rem, 8vw, 7.5rem)', lineHeight: 1.0, letterSpacing: '-0.03em', color: 'var(--hero-text)', marginBottom: '10px' }}>
-          Seu negócio
+        <h1 className="display-title animate-fade-up delay-100" style={{ fontSize: 'clamp(3.2rem, 7.5vw, 6.8rem)', lineHeight: 1.05, letterSpacing: '-0.03em', color: 'var(--hero-text)', marginBottom: '6px' }}>
+          Seu negócio travado?
         </h1>
-        <h1 className="display-title animate-fade-up delay-200" style={{ fontSize: 'clamp(3.4rem, 8vw, 7.5rem)', lineHeight: 1.0, letterSpacing: '-0.03em', marginBottom: '10px' }}>
-          <em
-            style={{
-              fontStyle: 'italic',
-              position: 'relative',
-              display: 'inline-block',
-              color: 'var(--hero-blue)',
-            }}
-          >
-            mais inteligente
-            <span
-              style={{
-                position: 'absolute',
-                left: 0,
-                bottom: '-8px',
-                width: '100%',
-                height: '4px',
-                borderRadius: '3px',
-                background: 'var(--hero-gold)',
-                opacity: 0.9,
-              }}
-            />
+        <h1 className="display-title animate-fade-up delay-200" style={{ fontSize: 'clamp(3.2rem, 7.5vw, 6.8rem)', lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: '44px' }}>
+          <em style={{ fontStyle: 'italic', color: 'var(--hero-blue-light)' }}>
+            A gente destrava o crescimento.
           </em>
-        </h1>
-        <h1 className="display-title animate-fade-up delay-300" style={{ fontSize: 'clamp(3.4rem, 8vw, 7.5rem)', lineHeight: 1.0, letterSpacing: '-0.03em', color: 'var(--hero-text)', marginBottom: '44px' }}>
-          e lucrativo.
         </h1>
 
         {/* Subtext */}
@@ -207,7 +113,7 @@ export default function Hero() {
         >
           {stats.map(s => (
             <div key={s.label}>
-              <p style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '2.2rem', color: 'var(--hero-blue)', lineHeight: 1 }}>
+              <p style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '2.2rem', color: 'var(--hero-blue-light)', lineHeight: 1 }}>
                 {s.num}
               </p>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.8rem', color: 'var(--hero-text-muted)', marginTop: '4px', letterSpacing: '0.05em' }}>
@@ -221,29 +127,16 @@ export default function Hero() {
       <style>{`
         #hero {
           --hero-bg-top: #4a2f22;
-          --hero-bg-bottom: #b3855b;
           --hero-blue: #0158AD;
           --hero-blue-light: #5fa8f0;
           --hero-gold: #c89b6a;
-          --hero-glow: #8a5a3a;
           --hero-text: #faf6f0;
-          --hero-text-muted: rgba(250,246,240,0.72);
+          --hero-text-muted: rgba(250,246,240,0.78);
         }
-
-        @keyframes heroFloat {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-        }
-        @keyframes heroSpin {
-          from { transform: rotate(0deg); }
-          to   { transform: rotate(360deg); }
-        }
-        .hero-float { animation: heroFloat 13s ease-in-out infinite; }
-        .hero-spin  { animation: heroSpin 50s linear infinite; }
 
         #hero .hero-btn-primary {
-          background: var(--hero-blue);
-          color: var(--hero-text);
+          background: var(--hero-blue-light);
+          color: #062b5c;
           padding: 15px 38px;
           border-radius: 999px;
           font-family: var(--font-body);
@@ -262,13 +155,13 @@ export default function Hero() {
         }
         #hero .hero-btn-primary:hover {
           transform: translateY(-1px);
-          box-shadow: 0 10px 30px rgba(1,88,173,0.55);
+          box-shadow: 0 10px 30px rgba(95,168,240,0.5);
         }
 
         #hero .hero-btn-outline {
-          background: transparent;
+          background: rgba(15,14,13,0.15);
           color: var(--hero-text);
-          border: 1px solid rgba(250,246,240,0.3);
+          border: 1px solid rgba(250,246,240,0.4);
           padding: 14px 36px;
           border-radius: 999px;
           font-family: var(--font-body);
@@ -289,9 +182,6 @@ export default function Hero() {
           transform: translateY(-1px);
         }
 
-        @media (prefers-reduced-motion: reduce) {
-          .hero-float, .hero-spin { animation: none; }
-        }
       `}</style>
     </section>
   )
