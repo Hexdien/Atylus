@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
-import { Send, CheckCircle } from 'lucide-react'
+import { Send, CheckCircle, MessageCircle } from 'lucide-react'
 
 export default function Contact() {
   const ref = useRef(null)
@@ -52,8 +52,8 @@ export default function Contact() {
         <div ref={ref} className="reveal">
           <p className="section-label" style={{ marginBottom: '20px' }}>Vamos conversar</p>
           <h2 className="display-title" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: 'var(--color-ink)', marginBottom: '28px' }}>
-            Pronto para<br />
-            <em style={{ color: 'var(--color-accent)', fontStyle: 'italic' }}>crescer?</em>
+            Não perca tempo,<br />
+            <em style={{ color: 'var(--color-accent)', fontStyle: 'italic' }}>transforme seu negócio agora.</em>
           </h2>
 
           {[
@@ -73,7 +73,7 @@ export default function Contact() {
         </div>
 
         {/* Form box */}
-        <div style={{ padding: '48px', background: 'var(--color-surface)' }}>
+        <div style={{ padding: '48px', background: '#f4ede2', borderRadius: '28px', boxShadow: '0 24px 48px rgba(15,14,13,0.08)' }}>
           {sent ? (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '400px', textAlign: 'center', gap: 20 }}>
               <CheckCircle size={48} color="var(--color-accent)" strokeWidth={1.5} />
@@ -156,14 +156,25 @@ export default function Contact() {
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.85rem', color: '#c0392b' }}>{error}</p>
               )}
 
-              <button
-                type="submit"
-                className="btn-primary"
-                disabled={loading}
-                style={{ alignSelf: 'flex-start', marginTop: '8px', opacity: loading ? 0.65 : 1 }}
-              >
-                {loading ? 'Enviando...' : <><span>Enviar mensagem</span><Send size={15} /></>}
-              </button>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginTop: '8px' }}>
+                <button
+                  type="submit"
+                  className="btn-primary"
+                  disabled={loading}
+                  style={{ alignSelf: 'flex-start', opacity: loading ? 0.65 : 1 }}
+                >
+                  {loading ? 'Enviando...' : <><span>Enviar mensagem</span><Send size={15} /></>}
+                </button>
+                <div style={{
+                  width: 44, height: 44,
+                  borderRadius: '50%',
+                  background: 'var(--color-accent)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  flexShrink: 0,
+                }}>
+                  <MessageCircle size={20} color="var(--color-paper)" strokeWidth={1.5} />
+                </div>
+              </div>
 
             </form>
           )}
