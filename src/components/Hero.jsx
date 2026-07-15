@@ -63,7 +63,7 @@ export default function Hero() {
 
         {/* Headline */}
         <h1 className="display-title animate-fade-up delay-100" style={{ fontSize: 'clamp(3.2rem, 7.5vw, 6.8rem)', lineHeight: 1.05, letterSpacing: '-0.03em', color: 'var(--hero-text)', marginBottom: '6px' }}>
-          Seu negócio travado?
+          Seu empreendimento está travado?
         </h1>
         <h1 className="display-title animate-fade-up delay-200" style={{ fontSize: 'clamp(3.2rem, 7.5vw, 6.8rem)', lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: '44px' }}>
           <em style={{ fontStyle: 'italic', color: 'var(--hero-blue-light)' }}>
