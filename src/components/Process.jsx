@@ -73,7 +73,7 @@ export default function Process() {
         </div>
 
         {/* Steps */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '32px 20px', marginTop: '20px' }}>
           {steps.map((step, i) => {
             const Icon = step.icon
             return (
@@ -81,33 +81,17 @@ export default function Process() {
                 key={step.num}
                 ref={el => itemRefs.current[i] = el}
                 className="reveal proc-card"
-                style={{
-                  padding: '40px 32px',
-                  background: '#f4ede2',
-                  borderRadius: '24px',
-                  transitionDelay: `${i * 0.12}s`,
-                }}
+                style={{ transitionDelay: `${i * 0.12}s` }}
               >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px' }}>
-                  <p style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '2.6rem', color: '#a89686', lineHeight: 1 }}>
-                    {step.num}
-                  </p>
-                  <div className="proc-icon-badge" style={{
-                    width: 40, height: 40,
-                    background: 'rgba(1,88,173,0.08)',
-                    borderRadius: '50px',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    flexShrink: 0,
-                  }}>
+                <span className="proc-pin-badge">{step.num}</span>
+                <div className="proc-card-inner">
+                  <Icon size={150} strokeWidth={1} className="proc-watermark" />
+                  <div className="proc-icon-badge">
                     <Icon size={19} color="#0158AD" strokeWidth={1.5} />
                   </div>
+                  <h3 className="proc-title">{step.title}</h3>
+                  <p className="proc-desc">{step.description}</p>
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '1.25rem', color: '#0f0e0d', marginBottom: '12px', lineHeight: 1.25 }}>
-                  {step.title}
-                </h3>
-                <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.92rem', fontWeight: 300, color: '#7a7068', lineHeight: 1.75 }}>
-                  {step.description}
-                </p>
               </div>
             )
           })}
@@ -121,22 +105,84 @@ export default function Process() {
         }
         .proc-float { animation: procFloat 14s ease-in-out infinite; }
 
-        #processo .proc-card {
-          transition: transform 0.35s cubic-bezier(.16,1,.3,1), box-shadow 0.35s ease;
+        .proc-card {
+          position: relative;
+          overflow: visible;
+          transition: transform 0.35s cubic-bezier(.16,1,.3,1);
         }
-        #processo .proc-card:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 24px 48px rgba(0,0,0,0.28);
-        }
-        #processo .proc-card:hover .proc-icon-badge {
+        .proc-card:hover { transform: translateY(-8px); }
+
+        .proc-pin-badge {
+          position: absolute;
+          top: -18px;
+          left: 28px;
+          z-index: 2;
+          display: inline-flex;
+          align-items: center;
+          padding: 6px 16px;
+          border-radius: 999px;
           background: #0158AD;
+          color: #f4ede2;
+          font-family: var(--font-display);
+          font-weight: 900;
+          font-size: 0.9rem;
+          box-shadow: 0 10px 24px rgba(1,88,173,0.4);
+        }
+
+        .proc-card-inner {
+          position: relative;
+          overflow: hidden;
+          border-radius: 24px;
+          padding: 40px 32px 32px;
+          background: rgba(244,237,226,0.08);
+          border: 1px solid rgba(250,246,240,0.14);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          transition: box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+        .proc-card:hover .proc-card-inner {
+          box-shadow: 0 24px 48px rgba(0,0,0,0.28);
+          border-color: rgba(95,168,240,0.4);
+        }
+
+        .proc-watermark {
+          position: absolute;
+          bottom: -24px;
+          right: -20px;
+          color: #faf6f0;
+          opacity: 0.05;
+          pointer-events: none;
+        }
+
+        .proc-icon-badge {
+          position: relative;
+          width: 40px; height: 40px;
+          background: rgba(1,88,173,0.16);
+          border-radius: 50px;
+          display: flex; align-items: center; justify-content: center;
+          margin-bottom: 24px;
           transition: background 0.35s ease;
         }
-        #processo .proc-card:hover .proc-icon-badge svg {
-          stroke: #f4ede2;
+        .proc-card:hover .proc-icon-badge { background: #0158AD; }
+        .proc-card:hover .proc-icon-badge svg { stroke: #f4ede2; }
+        .proc-icon-badge svg { transition: stroke 0.35s ease; }
+
+        .proc-title {
+          position: relative;
+          font-family: var(--font-display);
+          font-weight: 900;
+          font-size: 1.25rem;
+          color: #faf6f0;
+          margin-bottom: 12px;
+          line-height: 1.25;
         }
-        .proc-icon-badge, .proc-icon-badge svg {
-          transition: background 0.35s ease, stroke 0.35s ease;
+        .proc-desc {
+          position: relative;
+          font-family: var(--font-body);
+          font-size: 0.92rem;
+          font-weight: 300;
+          color: rgba(250,246,240,0.7);
+          line-height: 1.75;
         }
 
         @media (prefers-reduced-motion: reduce) {
