@@ -1,343 +1,421 @@
-import { useEffect, useRef } from 'react'
-import { ShoppingBag, Code2, Globe, ArrowRight } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { ArrowRight } from 'lucide-react'
 
-const phoneGlobeImg = `${import.meta.env.BASE_URL}visibilidade.png`
+const resultadoImg = `${import.meta.env.BASE_URL}resultado.png`
+const automacaoImg = `${import.meta.env.BASE_URL}automação.png`
+const autoridadeImg = `${import.meta.env.BASE_URL}autoridade.png`
 
 const cases = [
   {
-    icon: ShoppingBag,
-    tag: 'Delivery',
-    theme: 'light',
-    chip: '+573% em 60 dias',
-    title: 'Direto Pro Caixa, Sem Depender de Sorte',
-    description: 'Ajustamos cardápio, ranqueamento no iFood/99Food e a precificação certa — faturamento saltou de R$ 1,3 mil pra quase R$ 9 mil em dois meses.',
+    key: 'delivery',
+    client: 'Delivery regional — Zona Sul do Rio de Janeiro',
     metric: { value: 573, suffix: '%', label: 'de crescimento em 60 dias' },
-    items: ['Mais pedidos sem gastar mais em anúncio', 'Ticket médio maior a cada venda', 'Resultado visível já no 2º mês'],
+    image: resultadoImg,
+    imageAlt: 'Comparativo real de faturamento entre fevereiro e abril',
+    problem: 'Vendas estagnadas, cardápio mal posicionado nos apps de delivery e preços que não cobriam o esforço do dia a dia.',
+    strategy: 'Reorganizamos cardápio, ranqueamento no iFood e 99Food, e a precificação — sem depender de anúncio pago.',
+    result: 'Faturamento saltou de R$ 1,3 mil para quase R$ 9 mil em dois meses.',
   },
   {
-    icon: Code2,
-    tag: 'Sistemas',
-    theme: 'tan',
-    chip: 'Menos retrabalho, mais controle',
-    title: 'Uma Operação Que Para de Depender de Você',
-    description: 'Automatizamos os processos manuais que causavam erro e atraso — a equipe passou a confiar nos números que vê todos os dias.',
+    key: 'sistemas',
+    client: 'Operação de médio porte com processos manuais',
     metric: { value: 68, suffix: '%', label: 'menos retrabalho manual' },
-    items: ['Menos erro e inconsistência', 'Decisão mais rápida com dado confiável', 'Roda sem sua supervisão constante'],
+    image: automacaoImg,
+    imageAlt: 'Painel de automação e servidores organizados',
+    problem: 'Processos manuais geravam erro constante, retrabalho e decisões tomadas sem dado confiável.',
+    strategy: 'Automatizamos os fluxos críticos e centralizamos os números num só lugar, sem depender de planilhas soltas.',
+    result: 'Menos retrabalho manual, decisões mais rápidas e uma operação que roda sem supervisão constante.',
   },
   {
-    icon: Globe,
-    tag: 'Digital',
-    theme: 'dark',
-    chip: 'Presença que gera confiança',
-    title: 'Primeira Impressão Que Já Converte',
-    description: 'Construímos presença digital que passa credibilidade no primeiro olhar e transforma visita em contato real.',
+    key: 'digital',
+    client: 'Prestador de serviços sem presença digital',
     metric: { value: 240, suffix: '%', label: 'mais visibilidade online' },
-    items: ['Confiança instantânea', 'Contato direto pro WhatsApp', 'Mais visibilidade nas buscas locais'],
+    image: autoridadeImg,
+    imageAlt: 'Site institucional com foco em credibilidade',
+    problem: 'Presença digital amadora ou inexistente, perdendo clientes pra concorrentes com melhor primeira impressão.',
+    strategy: 'Construímos um site institucional com foco em credibilidade e um caminho direto pro contato via WhatsApp.',
+    result: 'Muito mais visibilidade online, com visitantes convertendo em contato real.',
   },
 ]
 
+function animateCounter(el, value, duration = 1200, isStale) {
+  const start = performance.now()
+  const tick = now => {
+    if (isStale && isStale()) return
+    const progress = Math.min(1, (now - start) / duration)
+    const eased = 1 - Math.pow(1 - progress, 3)
+    if (el) el.textContent = Math.round(eased * value)
+    if (progress < 1) requestAnimationFrame(tick)
+  }
+  requestAnimationFrame(tick)
+}
+
 export default function Portfolio() {
-  const refs = useRef([])
-  const counterRefs = useRef([])
-  const countedRef = useRef([])
+  const triggerRefs = useRef([])
+  const counterRefsDesktop = useRef([])
+  const imageRef = useRef(null)
+  const panelRef = useRef(null)
+  const [active, setActive] = useState(0)
 
+  const mobileRefs = useRef([])
+  const counterRefsMobile = useRef([])
+  const countedMobileRef = useRef([])
+  const animTokenRef = useRef(0)
+
+  // Desktop: which case is active, driven by scroll position
   useEffect(() => {
-    const animateCount = i => {
-      if (countedRef.current[i]) return
-      countedRef.current[i] = true
-
-      const { value } = cases[i].metric
-      const el = counterRefs.current[i]
-      const duration = 1400
-      const start = performance.now()
-
-      const tick = now => {
-        const progress = Math.min(1, (now - start) / duration)
-        const eased = 1 - Math.pow(1 - progress, 3)
-        if (el) el.textContent = Math.round(eased * value)
-        if (progress < 1) requestAnimationFrame(tick)
-      }
-      requestAnimationFrame(tick)
-    }
-
     const observer = new IntersectionObserver(
-      entries => entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible')
-          animateCount(refs.current.indexOf(e.target))
+      entries => entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActive(Number(entry.target.dataset.index))
         }
       }),
-      { threshold: 0.12 }
+      { threshold: 0.5 }
     )
-    refs.current.forEach(r => r && observer.observe(r))
+    triggerRefs.current.forEach(r => r && observer.observe(r))
     return () => observer.disconnect()
   }, [])
 
-  return (
-    <section id="portfolio" style={{ padding: '140px 40px', background: '#ede1d3', position: 'relative', overflow: 'hidden' }}>
+  // Runs every time the active case changes, so the count-up replays on every view
+  useEffect(() => {
+    const token = ++animTokenRef.current
+    animateCounter(
+      counterRefsDesktop.current[active],
+      cases[active].metric.value,
+      1200,
+      () => animTokenRef.current !== token
+    )
+  }, [active])
 
-      {/* Side visual — right: phone + spinning globe */}
-      <div className="portfolio-corner portfolio-corner-right">
-        <div className="globe-frame">
-          <img src={phoneGlobeImg} alt="Conexão global via celular" className="globe-base" />
-          <img src={phoneGlobeImg} alt="" aria-hidden="true" className="globe-spin" />
+  // Mobile: independent reveal + counter per stacked case
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible')
+          const idx = Number(entry.target.dataset.index)
+          if (!countedMobileRef.current[idx]) {
+            countedMobileRef.current[idx] = true
+            animateCounter(counterRefsMobile.current[idx], cases[idx].metric.value)
+          }
+        }
+      }),
+      { threshold: 0.2 }
+    )
+    mobileRefs.current.forEach(r => r && observer.observe(r))
+    return () => observer.disconnect()
+  }, [])
+
+  // Subtle scroll-linked parallax on the active desktop showcase image
+  useEffect(() => {
+    let ticking = false
+
+    const update = () => {
+      ticking = false
+      const trigger = triggerRefs.current[active]
+      if (!trigger || !imageRef.current) return
+
+      const rect = trigger.getBoundingClientRect()
+      const vh = window.innerHeight
+      const progress = Math.min(1, Math.max(0, (vh - rect.top) / (rect.height + vh)))
+      const shift = (progress - 0.5) * 32
+      imageRef.current.style.transform = `translateY(${shift}px)`
+    }
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true
+        requestAnimationFrame(update)
+      }
+    }
+
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [active])
+
+  const handleImageMouseMove = e => {
+    if (!panelRef.current) return
+    const rect = panelRef.current.getBoundingClientRect()
+    const tiltX = ((e.clientY - rect.top) / rect.height - 0.5) * -4
+    const tiltY = ((e.clientX - rect.left) / rect.width - 0.5) * 4
+    panelRef.current.style.setProperty('--img-tilt-x', `${tiltX}deg`)
+    panelRef.current.style.setProperty('--img-tilt-y', `${tiltY}deg`)
+  }
+
+  const handleImageMouseLeave = () => {
+    if (!panelRef.current) return
+    panelRef.current.style.setProperty('--img-tilt-x', '0deg')
+    panelRef.current.style.setProperty('--img-tilt-y', '0deg')
+  }
+
+  const current = cases[active]
+
+  return (
+    <section id="portfolio" style={{ position: 'relative' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '140px 40px 0', textAlign: 'center' }}>
+        <p className="section-label" style={{ marginBottom: '16px' }}>Resultados reais</p>
+        <h2 className="display-title" style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)', color: 'var(--color-ink)' }}>
+          Cases que<br />
+          <em style={{ color: 'var(--color-accent)', fontStyle: 'italic' }}>provam o método.</em>
+        </h2>
+      </div>
+
+      {/* Desktop / tablet — cinematic scroll track, one case fills the screen at a time */}
+      <div className="port-track" style={{ position: 'relative', height: `${cases.length * 100}vh`, marginTop: '40px' }}>
+        {cases.map((c, i) => (
+          <div
+            key={c.key}
+            ref={el => triggerRefs.current[i] = el}
+            data-index={i}
+            style={{ position: 'absolute', top: `${i * 100}vh`, left: 0, width: '100%', height: '100vh', pointerEvents: 'none' }}
+          />
+        ))}
+
+        <div
+          ref={panelRef}
+          className={`port-sticky port-theme-${current.key}`}
+          style={{ position: 'sticky', top: 0, height: '100vh' }}
+        >
+          <div style={{ maxWidth: '1160px', margin: '0 auto', padding: '0 40px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+
+            <div key={current.key} className="port-fade">
+              <p className="port-client">{current.client}</p>
+              <div className="port-number">
+                <span ref={el => counterRefsDesktop.current[active] = el}>0</span>{current.metric.suffix}
+              </div>
+              <p className="port-number-label">{current.metric.label}</p>
+
+              <div className="port-body">
+                <div
+                  className="port-visual"
+                  onMouseMove={handleImageMouseMove}
+                  onMouseLeave={handleImageMouseLeave}
+                >
+                  <img
+                    ref={imageRef}
+                    src={current.image}
+                    alt={current.imageAlt}
+                    className="port-image"
+                  />
+                </div>
+
+                <div className="port-story">
+                  <div className="port-story-block">
+                    <span className="port-story-label">Problema</span>
+                    <p>{current.problem}</p>
+                  </div>
+                  <div className="port-story-block">
+                    <span className="port-story-label">Estratégia</span>
+                    <p>{current.strategy}</p>
+                  </div>
+                  <div className="port-story-block">
+                    <span className="port-story-label">Resultado</span>
+                    <p>{current.result}</p>
+                  </div>
+
+                  <a href="#contato" className="port-cta">
+                    Quero resultado assim <ArrowRight size={14} />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {active < cases.length - 1 && (
+              <p className="port-scroll-hint">role para continuar ↓</p>
+            )}
+          </div>
         </div>
       </div>
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+      {/* Mobile — stacked cases, no sticky/parallax, adapted interaction */}
+      <div className="port-mobile">
+        {cases.map((c, i) => (
+          <div
+            key={c.key}
+            ref={el => mobileRefs.current[i] = el}
+            data-index={i}
+            className={`port-mobile-case reveal port-theme-${c.key}`}
+          >
+            <div style={{ maxWidth: '600px', margin: '0 auto', padding: '0 24px' }}>
+              <p className="port-client">{c.client}</p>
+              <div className="port-number">
+                <span ref={el => counterRefsMobile.current[i] = el}>0</span>{c.metric.suffix}
+              </div>
+              <p className="port-number-label">{c.metric.label}</p>
 
-        <div style={{ marginBottom: '48px', textAlign: 'center' }}>
-          <p className="section-label" style={{ marginBottom: '16px', fontSize: '1rem' }}>Resultados reais</p>
-          <h2 className="display-title" style={{ fontSize: 'clamp(2.2rem, 5vw, 4rem)', color: 'var(--color-ink)' }}>
-            Cases que<br />
-            <em style={{ color: 'var(--color-accent)', fontStyle: 'italic' }}>provam o método.</em>
-          </h2>
-        </div>
+              <div className="port-visual" style={{ marginBottom: '28px' }}>
+                <img src={c.image} alt={c.imageAlt} className="port-image" style={{ height: '240px' }} />
+              </div>
 
-        {/* Case cards — staggered row, alternating tone per card */}
-        <div className="portfolio-cascade">
-          {cases.map((c, i) => {
-            const Icon = c.icon
-            return (
-              <div
-                key={c.title}
-                ref={el => refs.current[i] = el}
-                className={`reveal portfolio-case-card theme-${c.theme}`}
-                style={{ transitionDelay: `${i * 0.1}s` }}
-              >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
-                  <div className="portfolio-icon-badge">
-                    <Icon size={20} strokeWidth={1.5} />
-                  </div>
-                  <span className="portfolio-tag">{c.tag}</span>
+              <div className="port-story">
+                <div className="port-story-block">
+                  <span className="port-story-label">Problema</span>
+                  <p>{c.problem}</p>
+                </div>
+                <div className="port-story-block">
+                  <span className="port-story-label">Estratégia</span>
+                  <p>{c.strategy}</p>
+                </div>
+                <div className="port-story-block">
+                  <span className="port-story-label">Resultado</span>
+                  <p>{c.result}</p>
                 </div>
 
-                <div className="portfolio-metric">
-                  <div className="portfolio-metric-number">
-                    <span ref={el => counterRefs.current[i] = el}>0</span>{c.metric.suffix}
-                  </div>
-                  <svg className="portfolio-sparkline" viewBox="0 0 120 40" fill="none">
-                    <path
-                      d="M2,34 C20,30 28,10 46,14 C64,18 70,4 88,8 C100,11 108,2 118,4"
-                      className="spark-path"
-                      strokeWidth="2"
-                    />
-                  </svg>
-                  <p className="portfolio-metric-label">{c.metric.label}</p>
-                </div>
-
-                <span className="portfolio-chip">{c.chip}</span>
-
-                <h3 className="portfolio-title">{c.title}</h3>
-                <p className="portfolio-desc">{c.description}</p>
-
-                <ul className="portfolio-items">
-                  {c.items.map(item => (
-                    <li key={item}>
-                      <span className="portfolio-item-dot" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <a href="#contato" className="portfolio-cta">
+                <a href="#contato" className="port-cta">
                   Quero resultado assim <ArrowRight size={14} />
                 </a>
               </div>
-            )
-          })}
-        </div>
+            </div>
+          </div>
+        ))}
       </div>
 
       <style>{`
-        .portfolio-cascade {
-          display: flex;
-          align-items: flex-start;
-          gap: 20px;
-          border-radius: 28px;
-          padding: 20px;
-          background: linear-gradient(90deg, #faf6f0 0%, #ede1d3 35%, #cbb08a 68%, #8a6440 100%);
+        .port-sticky, .port-mobile-case {
+          background: #fafaf8;
+          transition: background 0.6s ease;
         }
-        .portfolio-case-card {
-          flex: 1 1 360px;
-          padding: 40px 36px;
-          border-radius: 24px;
-          transition: transform 0.35s cubic-bezier(.16,1,.3,1), box-shadow 0.35s ease;
-          position: relative;
-        }
-        .portfolio-case-card:nth-child(1) { margin-top: 0; }
-        .portfolio-case-card:nth-child(2) { margin-top: 40px; }
-        .portfolio-case-card:nth-child(3) { margin-top: 80px; }
+        .port-sticky { overflow: hidden; }
+        .port-theme-sistemas { background: #f8f8fa; }
+        .port-theme-digital { background: #faf9f6; }
 
-        .portfolio-case-card:hover {
-          transform: translateY(-10px) scale(1.015);
-          z-index: 10 !important;
-          box-shadow: 0 32px 64px rgba(15,14,13,0.2);
+        .port-fade { animation: portFadeIn 0.7s cubic-bezier(.16,1,.3,1) both; }
+        @keyframes portFadeIn {
+          from { opacity: 0; transform: translateY(16px); }
+          to { opacity: 1; transform: translateY(0); }
         }
 
-        .theme-light, .theme-tan, .theme-dark {
-          backdrop-filter: blur(20px);
-          -webkit-backdrop-filter: blur(20px);
-        }
-        .theme-light {
-          background: rgba(255,255,255,0.55);
-          border: 1px solid rgba(255,255,255,0.6);
-          box-shadow: 0 16px 32px rgba(15,14,13,0.08);
-        }
-        .theme-tan, .theme-dark {
-          background: rgba(255,255,255,0.45);
-          border: 1px solid rgba(255,255,255,0.35);
-          box-shadow: 0 20px 40px rgba(15,14,13,0.1);
-        }
-
-        .theme-light, .theme-tan, .theme-dark {
-          --pf-text: #0f0e0d;
-          --pf-muted: var(--color-muted);
-          --pf-accent: #0158AD;
-          --pf-accent-soft: rgba(1,88,173,0.1);
-          --pf-item-text: rgba(15,14,13,0.78);
-        }
-
-        .portfolio-icon-badge {
-          width: 44px; height: 44px;
-          background: var(--pf-accent-soft);
-          color: var(--pf-accent);
-          border-radius: 50px;
-          display: flex; align-items: center; justify-content: center;
-        }
-        .portfolio-tag {
+        .port-client {
           font-family: var(--font-body);
-          font-size: 0.68rem;
-          letter-spacing: 0.2em;
+          font-size: 0.92rem;
+          letter-spacing: 0.12em;
           text-transform: uppercase;
-          color: var(--pf-muted);
-          font-weight: 500;
+          color: var(--color-muted);
+          margin-bottom: 12px;
         }
-
-        .portfolio-metric { margin-bottom: 20px; }
-        .portfolio-metric-number {
+        .port-number {
           font-family: var(--font-display);
           font-weight: 900;
-          font-size: clamp(2.4rem, 3.2vw, 3.2rem);
-          color: var(--pf-accent);
+          font-size: clamp(3.8rem, 8.5vw, 7rem);
+          color: #0158AD;
           line-height: 1;
         }
-        .portfolio-sparkline { display: block; width: 100%; height: 32px; margin: 10px 0 6px; }
-        .spark-path {
-          fill: none;
-          stroke: var(--pf-accent);
-          stroke-dasharray: 200;
-          stroke-dashoffset: 200;
-          transition: stroke-dashoffset 1.4s ease 0.3s;
+        .port-number-label {
+          font-family: var(--font-body);
+          font-size: 1.1rem;
+          color: var(--color-muted);
+          margin-top: 8px;
+          margin-bottom: 40px;
         }
-        .portfolio-case-card.visible .spark-path { stroke-dashoffset: 0; }
-        .portfolio-metric-label {
+        .port-sticky .port-client,
+        .port-sticky .port-number,
+        .port-sticky .port-number-label {
+          animation: portFadeIn 0.6s cubic-bezier(.16,1,.3,1) both;
+        }
+        .port-sticky .port-number { animation-delay: 0.08s; }
+        .port-sticky .port-number-label { animation-delay: 0.16s; }
+
+        .port-body {
+          display: grid;
+          grid-template-columns: 1.15fr 1fr;
+          gap: 56px;
+          align-items: start;
+        }
+
+        .port-visual {
+          border-radius: 24px;
+          overflow: hidden;
+          box-shadow: 0 32px 64px rgba(15,14,13,0.14);
+          perspective: 1000px;
+        }
+        .port-sticky .port-visual { animation: portFadeIn 0.8s cubic-bezier(.16,1,.3,1) 0.1s both; }
+        .port-image {
+          display: block;
+          width: 100%;
+          height: 460px;
+          object-fit: cover;
+          transform: rotateX(var(--img-tilt-x, 0deg)) rotateY(var(--img-tilt-y, 0deg)) scale(1);
+          transition: transform 0.4s ease;
+          will-change: transform;
+        }
+        .port-visual:hover .port-image { transform: rotateX(var(--img-tilt-x, 0deg)) rotateY(var(--img-tilt-y, 0deg)) scale(1.035); }
+
+        .port-story-block { margin-bottom: 22px; }
+        .port-sticky .port-story-block { animation: portFadeIn 0.6s cubic-bezier(.16,1,.3,1) both; }
+        .port-sticky .port-story-block:nth-of-type(1) { animation-delay: 0.2s; }
+        .port-sticky .port-story-block:nth-of-type(2) { animation-delay: 0.32s; }
+        .port-sticky .port-story-block:nth-of-type(3) { animation-delay: 0.44s; }
+        .port-story-label {
+          display: block;
           font-family: var(--font-body);
           font-size: 0.78rem;
-          color: var(--pf-muted);
-        }
-
-        .portfolio-chip {
-          display: inline-block;
-          padding: 5px 14px;
-          border-radius: 999px;
-          background: var(--pf-accent-soft);
-          color: var(--pf-accent);
-          font-family: var(--font-body);
-          font-size: 0.72rem;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: #0158AD;
           font-weight: 600;
-          letter-spacing: 0.04em;
-          margin-bottom: 16px;
+          margin-bottom: 6px;
         }
-        .portfolio-title {
-          font-family: var(--font-display);
-          font-weight: 900;
-          font-size: 1.4rem;
-          color: var(--pf-text);
-          margin-bottom: 14px;
-          line-height: 1.25;
-        }
-        .portfolio-desc {
+        .port-story-block p {
           font-family: var(--font-body);
-          font-size: 0.95rem;
+          font-size: 1.1rem;
           font-weight: 300;
-          color: var(--pf-muted);
-          line-height: 1.75;
-          margin-bottom: 24px;
+          color: var(--color-ink);
+          line-height: 1.7;
+          margin: 0;
         }
-        .portfolio-items { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
-        .portfolio-items li { display: flex; align-items: center; gap: 12px; font-family: var(--font-body); font-size: 0.86rem; color: var(--pf-item-text); }
-        .portfolio-item-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--pf-accent); flex-shrink: 0; }
 
-        .portfolio-cta {
+        .port-cta {
           display: inline-flex;
           align-items: center;
           gap: 8px;
+          margin-top: 8px;
           font-family: var(--font-body);
-          font-size: 0.8rem;
-          font-weight: 500;
+          font-size: 0.88rem;
+          font-weight: 600;
           letter-spacing: 0.1em;
           text-transform: uppercase;
-          color: var(--pf-accent);
+          color: #0158AD;
           text-decoration: none;
-          border-bottom: 1px solid var(--pf-accent);
+          border-bottom: 1px solid rgba(1,88,173,0.35);
           padding-bottom: 4px;
           transition: gap 0.25s ease;
         }
-        .portfolio-cta:hover { gap: 14px; }
+        .port-sticky .port-cta { animation: portFadeIn 0.6s cubic-bezier(.16,1,.3,1) 0.56s both; }
+        .port-cta:hover { gap: 14px; }
+
+        .port-scroll-hint {
+          position: absolute;
+          bottom: 32px;
+          left: 50%;
+          transform: translateX(-50%);
+          font-family: var(--font-body);
+          font-size: 0.78rem;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: var(--color-muted);
+          opacity: 0.6;
+          animation: portScrollHint 2.4s ease-in-out infinite;
+        }
+        @keyframes portScrollHint {
+          0%, 100% { opacity: 0.35; transform: translateX(-50%) translateY(0); }
+          50% { opacity: 0.7; transform: translateX(-50%) translateY(6px); }
+        }
+
+        .port-mobile { display: none; }
 
         @media (max-width: 900px) {
-          .portfolio-cascade { flex-direction: column; }
-          .portfolio-case-card:nth-child(1),
-          .portfolio-case-card:nth-child(2),
-          .portfolio-case-card:nth-child(3) { margin-top: 0; padding: 40px 32px; }
-        }
-
-        .portfolio-corner {
-          position: absolute;
-          pointer-events: none;
-          z-index: 0;
-        }
-        .portfolio-corner-right {
-          top: 40%;
-          right: 2%;
-          width: 240px;
-        }
-
-        .globe-frame {
-          position: relative;
-          width: 100%;
-        }
-        .globe-frame img {
-          width: 100%;
-          height: auto;
-          display: block;
-          filter: drop-shadow(0 20px 40px rgba(15,14,13,0.14));
-        }
-        .globe-base { position: relative; }
-        .globe-spin {
-          position: absolute;
-          inset: 0;
-          clip-path: circle(27% at 49% 37%);
-          transform-origin: 49% 37%;
-          animation: globeSpin 16s linear infinite;
-        }
-        @keyframes globeSpin {
-          from { transform: rotate(0deg); }
-          to   { transform: rotate(360deg); }
+          .port-track { display: none; }
+          .port-mobile { display: block; padding: 40px 0 80px; }
+          .port-mobile-case { padding: 56px 0; border-top: 1px solid rgba(15,14,13,0.06); }
+          .port-mobile-case:first-child { border-top: none; }
+          .port-body { grid-template-columns: 1fr; gap: 32px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .globe-spin { animation: none; }
-          .spark-path { transition: none; stroke-dashoffset: 0; }
-        }
-
-        @media (max-width: 1100px) {
-          .portfolio-corner { display: none; }
-        }
-
-        @media (max-width: 560px) {
-          #portfolio { padding: 100px 16px !important; }
+          .port-fade, .port-sticky .port-client, .port-sticky .port-number, .port-sticky .port-number-label,
+          .port-sticky .port-visual, .port-sticky .port-story-block, .port-sticky .port-cta, .port-scroll-hint { animation: none; }
+          .port-image { transition: none; }
         }
       `}</style>
     </section>
