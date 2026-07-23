@@ -1,5 +1,11 @@
 import { useRef, useEffect, useState } from 'react'
-import { Send, CheckCircle, MessageCircle } from 'lucide-react'
+import { Send, CheckCircle, Clock, Users, Target } from 'lucide-react'
+
+const benefits = [
+  { icon: Users, text: 'Atendimento direto com quem executa, sem intermediários.' },
+  { icon: Target, text: 'Primeira análise do seu negócio sem compromisso.' },
+  { icon: Clock, text: 'Plano de ação claro já na primeira conversa.' },
+]
 
 export default function Contact() {
   const ref = useRef(null)
@@ -45,16 +51,38 @@ export default function Contact() {
   }
 
   return (
-    <section id="contato" style={{ padding: '80px 40px', background: 'var(--color-paper)' }}>
-      <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'start' }}>
+    <section id="contato" style={{ padding: '100px 40px', background: 'var(--color-paper)' }}>
+      <div style={{ maxWidth: '1140px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '96px', alignItems: 'start' }}>
 
-        {/* Left info */}
+        {/* Left — consulting introduction */}
         <div ref={ref} className="reveal">
           <p className="section-label" style={{ marginBottom: '20px' }}>Vamos conversar</p>
           <h2 className="display-title" style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: 'var(--color-ink)', marginBottom: '28px' }}>
             Não perca tempo,<br />
             <em style={{ color: 'var(--color-accent)', fontStyle: 'italic' }}>transforme seu negócio agora.</em>
           </h2>
+
+          <blockquote className="contact-trust">
+            "Você não vai falar com um robô nem abrir um chamado. Vai conversar com alguém da nossa equipe para entender o seu negócio e encontrar a melhor solução."
+          </blockquote>
+
+          <div className="contact-benefits">
+            {benefits.map((b, i) => {
+              const Icon = b.icon
+              return (
+                <div key={b.text} className="contact-benefit">
+                  <span className="contact-benefit-num">0{i + 1}</span>
+                  <Icon size={16} className="contact-benefit-icon" />
+                  <span className="contact-benefit-text">{b.text}</span>
+                </div>
+              )
+            })}
+          </div>
+
+          <div className="contact-response">
+            <Clock size={15} />
+            <span>Resposta em até <strong>2h</strong> em dias úteis</span>
+          </div>
 
           {[
             { label: 'WhatsApp', value: '(21) 96469-9116' },
@@ -72,7 +100,7 @@ export default function Contact() {
           ))}
         </div>
 
-        {/* Form box */}
+        {/* Right — form */}
         <div style={{ padding: '48px', background: '#f4ede2', borderRadius: '28px', boxShadow: '0 24px 48px rgba(15,14,13,0.08)' }}>
           {sent ? (
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '400px', textAlign: 'center', gap: 20 }}>
@@ -87,21 +115,23 @@ export default function Contact() {
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
 
-              <div>
+              <p className="contact-form-eyebrow">Sua primeira conversa começa aqui</p>
+
+              <div className="form-field">
                 <label style={{ fontFamily: 'var(--font-body)', fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-muted)', display: 'block', marginBottom: '4px' }}>
                   Seu nome *
                 </label>
                 <input className="input-field" name="nome" value={form.nome} onChange={handleChange} placeholder="João Silva" required />
               </div>
 
-              <div>
+              <div className="form-field">
                 <label style={{ fontFamily: 'var(--font-body)', fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-muted)', display: 'block', marginBottom: '4px' }}>
                   Nome do negócio
                 </label>
                 <input className="input-field" name="negocio" value={form.negocio} onChange={handleChange} placeholder="Ex: Burger do João" />
               </div>
 
-              <div>
+              <div className="form-field">
                 <label style={{ fontFamily: 'var(--font-body)', fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-muted)', display: 'block', marginBottom: '4px' }}>
                   WhatsApp *
                 </label>
@@ -112,24 +142,13 @@ export default function Contact() {
                 <label style={{ fontFamily: 'var(--font-body)', fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-muted)', display: 'block', marginBottom: '12px' }}>
                   Interesse principal
                 </label>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
                   {['Consultoria Delivery', 'Sistemas', 'Site / Digital', 'Tudo!'].map(opt => (
                     <button
                       key={opt}
                       type="button"
                       onClick={() => setForm({ ...form, interesse: opt })}
-                      style={{
-                        padding: '8px 18px',
-                        fontFamily: 'var(--font-body)',
-                        fontSize: '0.8rem',
-                        letterSpacing: '0.05em',
-                        border: '1.5px solid',
-                        borderColor: form.interesse === opt ? 'var(--color-ink)' : 'rgba(15,14,13,0.2)',
-                        background: form.interesse === opt ? 'var(--color-ink)' : 'transparent',
-                        color: form.interesse === opt ? 'var(--color-paper)' : 'var(--color-muted)',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease',
-                      }}
+                      className={`contact-chip ${form.interesse === opt ? 'is-active' : ''}`}
                     >
                       {opt}
                     </button>
@@ -137,7 +156,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div>
+              <div className="form-field">
                 <label style={{ fontFamily: 'var(--font-body)', fontSize: '0.68rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--color-muted)', display: 'block', marginBottom: '4px' }}>
                   Conta mais (opcional)
                 </label>
@@ -156,25 +175,14 @@ export default function Contact() {
                 <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.85rem', color: '#c0392b' }}>{error}</p>
               )}
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginTop: '8px' }}>
-                <button
-                  type="submit"
-                  className="btn-primary"
-                  disabled={loading}
-                  style={{ alignSelf: 'flex-start', opacity: loading ? 0.65 : 1 }}
-                >
-                  {loading ? 'Enviando...' : <><span>Enviar mensagem</span><Send size={15} /></>}
-                </button>
-                <div style={{
-                  width: 44, height: 44,
-                  borderRadius: '50%',
-                  background: 'var(--color-accent)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  flexShrink: 0,
-                }}>
-                  <MessageCircle size={20} color="var(--color-paper)" strokeWidth={1.5} />
-                </div>
-              </div>
+              <button
+                type="submit"
+                className="btn-primary"
+                disabled={loading}
+                style={{ alignSelf: 'flex-start', marginTop: '8px', opacity: loading ? 0.65 : 1 }}
+              >
+                {loading ? 'Enviando...' : <><span>Quero uma análise gratuita</span><Send size={15} /></>}
+              </button>
 
             </form>
           )}
@@ -182,6 +190,79 @@ export default function Contact() {
       </div>
 
       <style>{`
+        .contact-trust {
+          margin: 0 0 32px;
+          padding-left: 20px;
+          border-left: 2px solid var(--color-accent);
+          font-family: var(--font-body);
+          font-style: italic;
+          font-weight: 300;
+          font-size: 1.02rem;
+          line-height: 1.75;
+          color: var(--color-ink);
+        }
+
+        .contact-benefits { display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px; }
+        .contact-benefit { display: flex; align-items: center; gap: 12px; }
+        .contact-benefit-num {
+          font-family: var(--font-display);
+          font-weight: 900;
+          font-size: 0.85rem;
+          color: rgba(1,88,173,0.4);
+          width: 20px;
+        }
+        .contact-benefit-icon { color: var(--color-accent); flex-shrink: 0; }
+        .contact-benefit-text { font-family: var(--font-body); font-size: 0.92rem; color: var(--color-ink); }
+
+        .contact-response {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 16px;
+          border-radius: 999px;
+          background: rgba(1,88,173,0.08);
+          color: var(--color-accent);
+          font-family: var(--font-body);
+          font-size: 0.85rem;
+          margin-bottom: 36px;
+        }
+        .contact-response strong { font-weight: 700; }
+
+        .contact-form-eyebrow {
+          font-family: var(--font-body);
+          font-size: 0.7rem;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: var(--color-accent);
+          font-weight: 600;
+          margin: -12px 0 -4px;
+        }
+
+        .form-field label { transition: color 0.25s ease; }
+        .form-field:focus-within label { color: var(--color-accent); }
+        .form-field .input-field { transition: transform 0.25s ease; }
+        .form-field:focus-within .input-field { transform: translateY(-1px); }
+
+        .contact-chip {
+          padding: 9px 20px;
+          border-radius: 999px;
+          font-family: var(--font-body);
+          font-size: 0.8rem;
+          letter-spacing: 0.03em;
+          border: 1.5px solid rgba(1,88,173,0.22);
+          background: transparent;
+          color: var(--color-muted);
+          cursor: pointer;
+          transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+        }
+        .contact-chip:hover { border-color: var(--color-accent); color: var(--color-accent); }
+        .contact-chip.is-active {
+          background: var(--color-accent);
+          border-color: var(--color-accent);
+          color: #fff;
+          transform: scale(1.03);
+        }
+
         @media (max-width: 768px) {
           #contato > div { grid-template-columns: 1fr !important; }
         }
